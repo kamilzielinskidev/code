@@ -1,17 +1,26 @@
 import {
   defaultTo,
+  getCheapestItem,
+  getCreditScoreRatings,
+  getMedianPaycheck,
+  getTop3MealsFor,
+  getTotalPrice,
   keepYoungAdults,
   shouldCode,
   upperAndReverseFirstName,
   upperAndReverseFirstNameMultiple,
 } from "./index";
-import { Adults, CodeUser as CodePerson, User, Users } from "./model";
+import { Adults, CodeUser, User, Users } from "./model";
+import { cart } from "./cart";
+import { menu } from "./menu";
+import { employees } from "./employees";
 
 describe("call upperAndReverseFirstName function", () => {
   describe("for single user", () => {
     const user: User = { firstName: "Bobo", lastName: "Flakes" };
 
     it("returns OBOB", () => {
+      //@ts-ignore
       expect(upperAndReverseFirstName(user)).toBe("OBOB");
     });
   });
@@ -44,7 +53,7 @@ describe("call upperAndReverseFirstName function", () => {
 
 describe("call shouldCode function", () => {
   describe("for non enjoying person", () => {
-    const codePerson: CodePerson = {
+    const codePerson: CodeUser = {
       name: "Spongebob",
       lovesTech: false,
       worksHard: true,
@@ -56,7 +65,7 @@ describe("call shouldCode function", () => {
     });
   });
   describe("for enjoying person", () => {
-    const codePerson: CodePerson = {
+    const codePerson: CodeUser = {
       name: "Sandy",
       lovesTech: true,
       worksHard: true,
@@ -101,21 +110,44 @@ describe("call defaultTo with Bobo as 1st argument", () => {
 });
 
 describe("call getTotalPrice with the cart array", () => {
-  xit("returns '$44.20'", () => {});
+  it("returns '$36.41'", () => {
+    //@ts-ignore
+    expect(getTotalPrice(cart)).toBe("$36.41");
+  });
 });
 
 describe("call getCheapestItem from the cart array", () => {
-  xit("returns 'soap'", () => {});
+  it("returns 'butter'", () => {
+    //@ts-ignore
+    expect(getCheapestItem(cart)).toBe("butter");
+  });
 });
 
 describe("call getTop3MealsFor from menu for price 12", () => {
-  xit("returns 'Lamb Gyro', 'House Salad' and 'Gigantus Fries' objects arrays", () => {});
+  it("returns 'Lamb Gyro', 'House Salad' and 'Gigantus Fries' objects arrays", () => {
+    //@ts-ignore
+    expect(getTop3MealsFor(menu)).toEqual([
+      { name: "Medium Fries", price: 10.36, rating: 4.96 },
+      { name: "House Salad", price: 11.39, rating: 4.86 },
+      { name: "Lamb Kebab", price: 8.85, rating: 4.82 },
+    ]);
+  });
 });
 
 describe("call getMedianPaycheck from employees list above $100k", () => {
-  xit("returns $141,000", () => {});
+  it("returns $608702.5", () => {
+    //@ts-ignore
+    expect(getMedianPaycheck(employees)).toBe("$608702.5");
+  });
 });
 
 describe("call getCreditScoreRatings for scores [740, 550, 681, 805]", () => {
-  xit("returns ['740 is good', '550 is poor', ' 681 is fair', '805 is excellent!']", () => {});
+  it("returns ['740 is good', '550 is poor', ' 681 is fair', '805 is excellent!']", () => {
+    expect(getCreditScoreRatings([740, 550, 681, 805])).toEqual([
+      "740 is good",
+      "550 is poor",
+      "681 is fair",
+      "805 is excellent!",
+    ]);
+  });
 });
