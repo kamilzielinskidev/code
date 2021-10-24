@@ -11,7 +11,7 @@ describe("call upperAndReverseFirstName function", () => {
   describe("for single user", () => {
     const user: User = { firstName: "Bobo", lastName: "Flakes" };
 
-    it("return OBOB", () => {
+    it("returns OBOB", () => {
       expect(upperAndReverseFirstName(user)).toBe("OBOB");
     });
   });
@@ -32,7 +32,7 @@ describe("call upperAndReverseFirstName function", () => {
       },
     ];
 
-    it("return [OBOB, ECNERWAL, NONA]", () => {
+    it("returns [OBOB, ECNERWAL, NONA]", () => {
       expect(upperAndReverseFirstNameMultiple(users)).toEqual([
         "OBOB",
         "ECNERWAL",
@@ -49,7 +49,7 @@ describe("call shouldCode function", () => {
       lovesTech: false,
       worksHard: true,
     };
-    it("return 'Spongebob wouldn't enjoy a tech career.'", () => {
+    it("returns 'Spongebob wouldn't enjoy a tech career.'", () => {
       expect(shouldCode(codePerson)).toBe(
         "Spongebob wouldn't enjoy a tech career."
       );
@@ -61,13 +61,13 @@ describe("call shouldCode function", () => {
       lovesTech: true,
       worksHard: true,
     };
-    it("return 'Sandy may enjoy a tech career!'", () => {
+    it("returns 'Sandy may enjoy a tech career!'", () => {
       expect(shouldCode(codePerson)).toBe("Sandy may enjoy a tech career!");
     });
   });
 });
 
-describe("call keepYoungAdults function", () => {
+describe("call keepYoungAdults function for adults array", () => {
   const adults: Adults = [
     { age: 20 },
     { age: 16 },
@@ -76,7 +76,7 @@ describe("call keepYoungAdults function", () => {
     { age: 25 },
     { age: 19 },
   ];
-  it(`return [{"age":20},{"age":18},{"age":25},{"age":19}]`, () => {
+  it(`returns [{"age":20},{"age":18},{"age":25},{"age":19}]`, () => {
     expect(keepYoungAdults(adults)).toEqual([
       { age: 20 },
       { age: 18 },
@@ -89,13 +89,33 @@ describe("call keepYoungAdults function", () => {
 describe("call defaultTo with Bobo as 1st argument", () => {
   const defaultToBobo = defaultTo("Bobo");
   describe("and null as 2nd argument", () => {
-    it("return Bobo", () => {
+    it("returns Bobo", () => {
       expect(defaultToBobo(null)).toBe("Bobo");
     });
   });
   describe("and 'Patrick' as 2nd argument", () => {
-    it("return Patrick", () => {
+    it("returns Patrick", () => {
       expect(defaultToBobo("Patrick")).toBe("Patrick");
     });
   });
+});
+
+describe("call getTotalPrice with the cart array", () => {
+  xit("returns '$44.20'", () => {});
+});
+
+describe("call getCheapestItem from the cart array", () => {
+  xit("returns 'soap'", () => {});
+});
+
+describe("call getTop3MealsFor from menu for price 12", () => {
+  xit("returns 'Lamb Gyro', 'House Salad' and 'Gigantus Fries' objects arrays", () => {});
+});
+
+describe("call getMedianPaycheck from employees list above $100k", () => {
+  xit("returns $141,000", () => {});
+});
+
+describe("call getCreditScoreRatings for scores [740, 550, 681, 805]", () => {
+  xit("returns ['740 is good', '550 is poor', ' 681 is fair', '805 is excellent!']", () => {});
 });
