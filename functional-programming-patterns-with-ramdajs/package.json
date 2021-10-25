@@ -2,7 +2,8 @@
   "name": "functional-programming-patterns-with-ramdajs",
   "version": "1.0.0",
   "scripts": {
-    "s:watch": "ts-node-dev --respawn --transpile-only src/index.ts",
+    "s:watch": "ts-node-dev --respawn --transpile-only",
+    "t": "jest",
     "t:watch": "jest --watch"
   },
   "author": "kamilzielinskidev",

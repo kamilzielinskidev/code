@@ -17,3 +17,45 @@ export type Employees = Employee[];
 
 export type CreditScore = number;
 export type CreditScores = CreditScore[];
+
+type Address = {
+  street: string;
+  suite: string;
+  city: string;
+  zipcode: string;
+  geo: {
+    lat: string;
+    lng: string;
+  };
+};
+
+type Company = {
+  name: string;
+  catchPhrase: string;
+  bs: string;
+};
+
+type Interests = {
+  foods: {
+    sweets: {
+      iceCream: {
+        favoriteFlavor: string;
+      };
+    };
+  };
+};
+
+export type EmployeeData = {
+  name: string;
+  username: string;
+  avatar: string;
+  email: string;
+  dob: string;
+  phone: string;
+  address: Address;
+  website: string;
+  company: Company;
+  interests: Interests;
+};
+
+export type EmployeesDatas = EmployeeData[];

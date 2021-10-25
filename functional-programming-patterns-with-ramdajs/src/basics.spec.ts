@@ -9,7 +9,7 @@ import {
   shouldCode,
   upperAndReverseFirstName,
   upperAndReverseFirstNameMultiple,
-} from "./index";
+} from "./basics";
 import { Adults, CodeUser, User, Users } from "./model";
 import { cart } from "./cart";
 import { menu } from "./menu";
