@@ -1,4 +1,4 @@
-import { F, ifElse, lensPath, pipe, view } from "ramda";
+import { F, ifElse, lensPath, view } from "ramda";
 import { isNotNilOrEmpty } from "ramda-adjunct";
 import { ChangeEvent } from "react";
 
@@ -18,3 +18,9 @@ export const searchHeaderText = ifElse(
   prependWith("Search query: "),
   F
 );
+
+export const createWikipediaApiUrl = (query: string) =>
+  `https://en.m.wikipedia.org/w/api.php?action=query&format=json&formatversion=2&prop=pageprops%7Cpageprops%7Cpageimages%7Cdescription&generator=prefixsearch&ppprop=displaytitle&gpssearch=${query}&gpsnamespace=0&gpslimit=5`;
+
+export const createWikipediaArticleUrl = (pageId: string) =>
+  `https://en.wikipedia.org/?curid=${pageId}`;

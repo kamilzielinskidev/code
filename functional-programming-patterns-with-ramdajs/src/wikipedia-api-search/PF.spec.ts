@@ -1,5 +1,12 @@
 import { ChangeEvent } from "react";
-import { getInputValue, prependWith, searchHeaderText } from "./PF";
+
+import {
+  createWikipediaApiUrl,
+  createWikipediaArticleUrl,
+  getInputValue,
+  prependWith,
+  searchHeaderText,
+} from "./PF";
 
 describe("getInputValue receives value from change input event", () => {
   const changeEvent = {
@@ -26,5 +33,21 @@ describe("searchHeaderText is called", () => {
     it("should return false", () => {
       expect(searchHeaderText("")).toBe(false);
     });
+  });
+});
+
+describe("createWikipediaApiUrl is called with pizza", () => {
+  it("should return 'https://en.wikipedia.org/w/api.php?action=parse&section=0&prop=text&format=json&page=pizza'", () => {
+    expect(createWikipediaApiUrl("pizza")).toBe(
+      "https://en.m.wikipedia.org/w/api.php?action=query&format=json&formatversion=2&prop=pageprops%7Cpageprops%7Cpageimages%7Cdescription&generator=prefixsearch&ppprop=displaytitle&gpssearch=pizza&gpsnamespace=0&gpslimit=5"
+    );
+  });
+});
+
+describe("createWikipediaArticleUrl is called with 123", () => {
+  it("should return https://en.wikipedia.org/?curid=123", () => {
+    expect(createWikipediaArticleUrl("123")).toBe(
+      "https://en.wikipedia.org/?curid=123"
+    );
   });
 });
