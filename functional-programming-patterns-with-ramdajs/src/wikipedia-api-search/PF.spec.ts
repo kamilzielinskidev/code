@@ -1,11 +1,16 @@
 import { ChangeEvent } from "react";
 
+import { SearchState, WikipediaApiResponse } from "./models";
 import {
+  callWithInputValue,
   createWikipediaApiUrl,
   createWikipediaArticleUrl,
+  emptyStringForEmpty,
   getInputValue,
+  mapResponseToResult,
   prependWith,
   searchHeaderText,
+  searchHeaderTextFromState,
 } from "./PF";
 
 describe("getInputValue receives value from change input event", () => {
@@ -36,6 +41,25 @@ describe("searchHeaderText is called", () => {
   });
 });
 
+describe("searchHeaderTextFromState is called with state", () => {
+  const state: SearchState = { search: "test", setSearch: () => {} };
+  it("should return 'Search query: test'", () => {
+    expect(searchHeaderTextFromState(state)).toBe("Search query: test");
+  });
+});
+
+describe("callWithInputValue is called with callback fn on change with input value 'testValue'", () => {
+  const callbackFn = jest.fn();
+  const changeEvent = {
+    target: { value: "testValue" },
+  } as ChangeEvent<HTMLInputElement>;
+
+  it("should call callback function with 'testValue' value", () => {
+    callWithInputValue(callbackFn)(changeEvent);
+    expect(callbackFn).toBeCalledWith("testValue");
+  });
+});
+
 describe("createWikipediaApiUrl is called with pizza", () => {
   it("should return 'https://en.wikipedia.org/w/api.php?action=parse&section=0&prop=text&format=json&page=pizza'", () => {
     expect(createWikipediaApiUrl("pizza")).toBe(
@@ -49,5 +73,62 @@ describe("createWikipediaArticleUrl is called with 123", () => {
     expect(createWikipediaArticleUrl("123")).toBe(
       "https://en.wikipedia.org/?curid=123"
     );
+  });
+});
+
+describe("emptyStringForEmpty is called", () => {
+  describe("with undefined value", () => {
+    it('should return ""', () => {
+      expect(emptyStringForEmpty(undefined)).toBe("");
+    });
+  });
+
+  describe("with some value", () => {
+    it("should return the value", () => {
+      expect(emptyStringForEmpty("test")).toBe("test");
+    });
+  });
+});
+
+describe("mapResponseToResult is called with example wikipedia api response", () => {
+  describe("with description", () => {
+    const exampleWikiResponse: WikipediaApiResponse = {
+      batchcomplete: false,
+      continue: {
+        gpsoffset: 123,
+        continue: "",
+      },
+      query: {
+        pages: [
+          {
+            ns: 1,
+            index: 1,
+            pageid: 123,
+            title: "testTitle",
+            description: "testDescription",
+          },
+          {
+            ns: 1,
+            index: 1,
+            pageid: 1234,
+            title: "testTitle2",
+          },
+        ],
+      },
+    };
+    it("should return properly mapped value", () => {
+      expect(mapResponseToResult(exampleWikiResponse)).toEqual([
+        {
+          pageId: 123,
+          title: "testTitle",
+          description: "testDescription",
+        },
+        {
+          pageId: 1234,
+          title: "testTitle2",
+          description: "",
+        },
+      ]);
+    });
   });
 });

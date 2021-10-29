@@ -1,7 +1,6 @@
-import { pipe } from "ramda";
 import { FC } from "react";
 
-import { getInputValue, searchHeaderText } from "./PF";
+import { callWithInputValue, searchHeaderTextFromState } from "./PF";
 import { useSearchState } from "./state";
 
 const Container: FC = ({ children }) => (
@@ -10,26 +9,20 @@ const Container: FC = ({ children }) => (
 
 const Header: FC = () => <h1 className="text-5xl">Wikipedia API Search</h1>;
 
-const Search: FC = () => {
-  const searchState = useSearchState();
-  return (
-    <input
-      className="mt-4 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight"
-      type="text"
-      onChange={pipe(getInputValue, searchState.setSearch)}
-      placeholder="Search..."
-    />
-  );
-};
+const Search: FC = () => (
+  <input
+    className="mt-4 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight"
+    type="text"
+    onChange={callWithInputValue(useSearchState().setSearch)}
+    placeholder="Search..."
+  />
+);
 
 const Results: FC = ({ children }) => <div>{children}</div>;
 
-const ResultsHeader: FC = () => {
-  const searchState = useSearchState();
-  return (
-    <h1 className="mt-4">{searchHeaderText(searchState.search)}</h1> // TODO: use fp-ts Either
-  );
-};
+const ResultsHeader: FC = () => (
+  <h1 className="mt-4">{searchHeaderTextFromState(useSearchState())}</h1>
+);
 
 const ResultsList: FC = ({ children }) => (
   <div className="mt-4">{children}</div>
