@@ -23,6 +23,7 @@
   },
   "dependencies": {
     "@types/react": "^17.0.33",
+    "axios": "^0.24.0",
     "ramda": "^0.27.1",
     "ramda-adjunct": "^2.34.0",
     "react": "^17.0.2",

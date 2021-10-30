@@ -1,7 +1,12 @@
 import { FC } from "react";
 
-import { callWithInputValue, searchHeaderTextFromState } from "./PF";
-import { useSearchState } from "./state";
+import { Result } from "./models";
+import {
+  callWithInputValue,
+  createWikipediaArticleUrl,
+  searchHeaderTextFromState,
+} from "./PF";
+import { resultsState, searchState } from "./state";
 
 const Container: FC = ({ children }) => (
   <div className="mt-5 mx-auto grid grid-cols-1 max-w-md">{children}</div>
@@ -13,7 +18,7 @@ const Search: FC = () => (
   <input
     className="mt-4 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight"
     type="text"
-    onChange={callWithInputValue(useSearchState().setSearch)}
+    onChange={callWithInputValue(searchState().setSearch)}
     placeholder="Search..."
   />
 );
@@ -21,67 +26,43 @@ const Search: FC = () => (
 const Results: FC = ({ children }) => <div>{children}</div>;
 
 const ResultsHeader: FC = () => (
-  <h1 className="mt-4">{searchHeaderTextFromState(useSearchState())}</h1>
+  <h1 className="mt-4">{searchHeaderTextFromState(searchState())}</h1>
 );
 
 const ResultsList: FC = ({ children }) => (
   <div className="mt-4">{children}</div>
 );
 
-type Result = {
-  title: string;
-  description: string;
-};
-
-type Text = {
-  text: string;
-};
-
-const Result: FC<Result> = ({ title, description }) => (
+const Result: FC<Result> = ({ title, description, pageId }) => (
   <div className="mt-2 border rounded p-4">
-    <ResultHead text={title} />
-    <ResultDescription text={description} />
+    <ResultHead link={createWikipediaArticleUrl(`${pageId}`)}>
+      {title}
+    </ResultHead>
+    <ResultDescription>{description}</ResultDescription>
   </div>
 );
 
-const ResultHead: FC<Text> = ({ text }) => (
-  <a className="text-3xl text-blue-600" href="#">
-    {text}
+const ResultHead: FC<{ link: string }> = ({ children, link }) => (
+  <a className="text-3xl text-blue-600" href={link}>
+    {children}
   </a>
 );
 
-const ResultDescription: FC<Text> = ({ text }) => (
-  <p className="mt-2">{text}</p>
+const ResultDescription: FC = ({ children }) => (
+  <p className="mt-2">{children}</p>
 );
 
-export const App: FC = () => {
-  return (
-    <Container>
-      <Header />
-      <Search />
-      <Results>
-        <ResultsHeader />
-        <ResultsList>
-          <Result
-            title={"JavaScript"}
-            description={
-              "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Inventore quibusdam illum nobis error voluptatem. Repellendus praesentium corporis id incidunt! Iure debitis animi ea nemo obcaecati quasi natus sequi molestiae eligendi."
-            }
-          />
-          <Result
-            title={"JavaScript"}
-            description={
-              "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Inventore quibusdam illum nobis error voluptatem. Repellendus praesentium corporis id incidunt! Iure debitis animi ea nemo obcaecati quasi natus sequi molestiae eligendi."
-            }
-          />
-          <Result
-            title={"JavaScript"}
-            description={
-              "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Inventore quibusdam illum nobis error voluptatem. Repellendus praesentium corporis id incidunt! Iure debitis animi ea nemo obcaecati quasi natus sequi molestiae eligendi."
-            }
-          />
-        </ResultsList>
-      </Results>
-    </Container>
-  );
-};
+export const App: FC = () => (
+  <Container>
+    <Header />
+    <Search />
+    <Results>
+      <ResultsHeader />
+      <ResultsList>
+        {resultsState().results.map((result) => (
+          <Result key={result.pageId} {...result} />
+        ))}
+      </ResultsList>
+    </Results>
+  </Container>
+);

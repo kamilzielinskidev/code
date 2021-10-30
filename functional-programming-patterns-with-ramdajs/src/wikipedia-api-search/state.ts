@@ -1,8 +1,20 @@
 import create from "zustand";
-import { SearchState } from "./models";
+
+import { ResultsState, SearchState } from "./models";
+import { getWikipediaQuery } from "./PF";
+
+export const resultsState = create<ResultsState>((set) => ({
+  results: [],
+  setResults: (results) => set({ results }),
+}));
 
 // TODO: to use Either from fp-ts
-export const useSearchState = create<SearchState>((set) => ({
+export const searchState = create<SearchState>((set) => ({
   search: "",
-  setSearch: (v) => set({ search: v }),
+  setSearch: (v) => {
+    set({ search: v });
+
+    //TODO: refactor this, test?
+    getWikipediaQuery(v).then((results) => resultsState.setState({ results }));
+  },
 }));

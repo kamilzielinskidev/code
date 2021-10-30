@@ -1,3 +1,4 @@
+import axios from "axios";
 import {
   always,
   applySpec,
@@ -15,6 +16,8 @@ import { isNotNilOrEmpty, then } from "ramda-adjunct";
 import { ChangeEvent } from "react";
 
 import { Result, WikipediaApiResponse, WikipediaPage } from "./models";
+
+//TODO: decide if to keep so small functions or to make it more complex
 
 type InputChangeEvent = ChangeEvent<HTMLInputElement>;
 
@@ -69,10 +72,9 @@ export const mapResponseToResult = pipe(
   )
 );
 
-const fetchWikipediaQuery = pipe(createWikipediaApiUrl, fetch);
-
 // TODO: test it with mocked fetch
 export const getWikipediaQuery = pipe(
-  fetchWikipediaQuery,
-  then(mapResponseToResult)
+  createWikipediaApiUrl,
+  axios.get,
+  then(pipe(prop("data"), mapResponseToResult))
 );
