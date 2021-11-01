@@ -1,6 +1,6 @@
 import { render } from "react-dom";
 
-import { App } from "./App";
+import { App } from "./components/App";
 
 import "tailwindcss/tailwind.css";
 import "./styles.scss";
