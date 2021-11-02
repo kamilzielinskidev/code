@@ -8,3 +8,5 @@ export type Deal = {
   releaseDate: string;
   thumb: Url;
 };
+
+export type Deals = Array<Deal>;

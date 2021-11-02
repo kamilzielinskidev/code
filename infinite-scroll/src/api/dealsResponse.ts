@@ -1,5 +1,6 @@
+import { pipe } from "ramda";
+
 import { get } from "../common/get";
-import { Url } from "../common/url";
 
 export type DealResponse = {
   internalName: string;
@@ -25,7 +26,7 @@ export type DealResponse = {
 
 export type DealsResponse = Array<DealResponse>;
 
-const CHEAP_SHARK_API_URL: Url =
-  "https://www.cheapshark.com/api/1.0/deals?storeID=1&upperPrice=15&pageSize=3";
+const cheapSharkApiUrl = (pageNumber: number) =>
+  `https://www.cheapshark.com/api/1.0/deals?storeID=1&upperPrice=30&pageSize=3&pageNumber=${pageNumber}`;
 
-export const getDealsResponse = () => get<DealsResponse>(CHEAP_SHARK_API_URL);
+export const getDealsResponse = pipe(cheapSharkApiUrl, get<DealsResponse>());
