@@ -1,0 +1,20 @@
+{
+  "name": "rxjs",
+  "dependencies": {
+    "ramda": "^0.27.1",
+    "rxjs": "^7.4.0",
+    "ts-node-dev": "^1.1.8"
+  },
+  "devDependencies": {
+    "@types/jest": "^27.0.2",
+    "@types/ramda": "^0.27.46",
+    "jest": "^27.3.1",
+    "parcel": "^2.0.0",
+    "ts-jest": "^27.0.7",
+    "typescript": "^4.4.4"
+  },
+  "scripts": {
+    "s:dev": "ts-node-dev --respawn --transpile-only"
+  },
+  "author": "kamilzielinskidev"
+}
