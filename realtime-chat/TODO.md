@@ -1,0 +1,4 @@
+- i'd like to send a message from pc and read it on my phone (as app/pwa)
+- i'd like to read last 10 messages on page load + live messages
+- i'd like to have authorization based on google/email
+- i'd like to have emoji's message parser
