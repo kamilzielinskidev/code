@@ -3,11 +3,8 @@ import { writable } from 'svelte/store';
 
 import { getMessages } from '../api/message/message';
 
+import type { ErrorState, LoadingState, OkState } from '../utils';
 import type { Message } from '../domain/message';
-
-type LoadingState = { state: 'LOADING' };
-type ErrorState = { state: 'ERROR'; message: string };
-type OkState<T> = { state: 'OK'; value: T };
 
 type MessagesStore = LoadingState | ErrorState | OkState<Message[]>;
 
