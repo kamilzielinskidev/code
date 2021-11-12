@@ -25,7 +25,7 @@
 				<h1>{$messages.message}</h1>
 			{/if}
 
-			{#if $messages.state === 'OK' && $user.isLoggedIn}
+			{#if $messages.state === 'OK'}
 				<div class="flex justify-between">
 					<span>Logged in as:</span>
 					<span class="font-bold">{$user.name}</span>

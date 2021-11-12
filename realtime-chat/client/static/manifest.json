@@ -1,0 +1,15 @@
+{
+	"name": "realtime-chat",
+	"short_name": "realtime-chat",
+	"icons": [
+		{
+			"src": "/images/icons/icon-512x512.png",
+			"sizes": "512x512",
+			"type": "image/png"
+		}
+	],
+	"start_url": "/",
+	"display": "standalone",
+	"background_color": "#9E9E9E",
+	"theme_color": "#9E9E9E"
+}
