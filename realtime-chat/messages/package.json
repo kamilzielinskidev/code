@@ -1,0 +1,20 @@
+{
+  "dependencies": {
+    "@types/express": "^4.17.13",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "socket.io": "^4.3.2",
+    "ts-node": "10.4.0",
+    "ts-node-dev": "1.1.8",
+    "typescript": "4.4.4"
+  },
+  "name": "messeges",
+  "engines": {
+    "node": "16.x"
+  },
+  "scripts": {
+    "start": "ts-node src/index.ts",
+    "dev": "ts-node-dev --respawn --transpile-only src/index.ts"
+  },
+  "version": "0.0.1"
+}
