@@ -5,7 +5,9 @@ import { Server } from "socket.io";
 
 const app = express();
 app.use(cors({ credentials: true, origin: true }));
+
 const httpServer = createServer(app);
+
 const io = new Server(httpServer, {
   cors: {
     origin: "*",
@@ -16,10 +18,17 @@ app.get("/", (req, res) => {
   res.send("socket");
 });
 
-io.on("connection", (socket) => {
-  socket.on("test", () => {
-    socket.emit("data", { data: [123] });
+const main = io.of("/");
+
+main.on("connection", (socket) => {
+  const by = socket.handshake.query.by;
+  socket.on("message", (message) => {
+    socket.broadcast.emit("message", { date: new Date(), by, message });
   });
 });
 
-httpServer.listen(process.env.PORT || 3000);
+const PORT = process.env.PORT || 3000;
+
+httpServer.listen(PORT, () => {
+  console.log(`Listening on ${PORT}`);
+});
