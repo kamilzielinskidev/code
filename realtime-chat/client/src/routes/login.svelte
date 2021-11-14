@@ -6,7 +6,7 @@
 	import { login } from '../stores/login';
 	import { user } from '../stores/user';
 
-	let name: string;
+	let name = '';
 
 	const goToMainPage = () => goto('/login');
 
@@ -24,12 +24,13 @@
 						<input
 							class="border p-2 w-full"
 							bind:value={name}
+							on:keydown={({ key }) => key === 'Enter' && login.login(name)}
 							type="text"
 							placeholder="Your name..."
 						/>
 					</div>
 					<div class="mt-2 flex justify-center">
-						<button class="border-2 p-2" on:click={login.login(name)}>jump in</button>
+						<button class="border-2 p-2" on:click={() => login.login(name)}>jump in</button>
 					</div>
 					{#if $login.state === 'ERROR'}
 						<div>

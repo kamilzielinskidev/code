@@ -15,7 +15,8 @@ const messagesStore = () => {
 			tap(() =>
 				messagesService.onMessage((message) => update((messages) => [...messages, message]))
 			)
-		)
+		),
+		sendMessage: messagesService.sendMessage
 	};
 };
 

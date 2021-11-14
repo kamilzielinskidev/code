@@ -5,11 +5,13 @@ import { socketIoConnection } from '../../lib/socketio';
 import type { Message } from '../../domain/message';
 import type { Message as ReceivedMessage } from './model';
 
+const MESSAGE_SERVICE_WS_URL = import.meta.env['VITE_MESSAGE_SERVICE_WS_URL'] as string;
+
 export const messagesService = (() => {
 	const connection = socketIoConnection();
 	return {
 		connect: (by: string) => {
-			connection.connect({ url: 'ws://localhost:3000', query: { by } });
+			connection.connect({ url: MESSAGE_SERVICE_WS_URL, query: { by } });
 		},
 		sendMessage: (message: string) => {
 			connection.emitEvent({ type: 'SendMessage', data: message });
