@@ -22,8 +22,13 @@ const main = io.of("/");
 
 main.on("connection", (socket) => {
   const by = socket.handshake.query.by;
-  socket.on("message", (message) => {
-    socket.broadcast.emit("message", { date: new Date(), by, message });
+  socket.on("SendMessage", (message) => {
+    socket.broadcast.emit("ReceivedMessage", {
+      // TODO: get time from user instead of server
+      createdAt: new Date(),
+      by,
+      message,
+    });
   });
 });
 

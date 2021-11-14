@@ -5,6 +5,7 @@ import { writable } from 'svelte/store';
 import { user } from './user';
 
 import type { ErrorState, LoadingState, PreState } from '../utils';
+import { messagesService } from '../api/messagesService/messagesService';
 type LoginStore = PreState | LoadingState | ErrorState;
 
 // TODO: handle specific validation messages
@@ -19,6 +20,8 @@ const loginStore = () => {
 			ifElse(
 				allPass(nameValidations),
 				pipe(
+					// TODO: move navigation logic and service connection to svelte component
+					tap(messagesService.connect),
 					tap(user.authorize),
 					tap(() => goto('/'))
 				),

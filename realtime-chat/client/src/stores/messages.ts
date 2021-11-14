@@ -1,22 +1,20 @@
-import { andThen, otherwise, pipe, tap } from 'ramda';
+import { pipe, tap } from 'ramda';
 import { writable } from 'svelte/store';
 
-import { getMessages } from '../api/message/message';
+import { messagesService } from '../api/messagesService/messagesService';
 
-import type { ErrorState, LoadingState, OkState } from '../utils';
 import type { Message } from '../domain/message';
 
-type MessagesStore = LoadingState | ErrorState | OkState<Message[]>;
-
 const messagesStore = () => {
-	const { subscribe, set } = writable<MessagesStore>({ state: 'LOADING' });
+	const { subscribe, update } = writable<Message[]>([]);
+
 	return {
 		subscribe,
-		fetch: pipe(
-			tap(() => set({ state: 'LOADING' })),
-			getMessages,
-			andThen((value) => set({ state: 'OK', value })),
-			otherwise(({ message }) => set({ state: 'ERROR', message }))
+		listenToMessages: pipe(
+			// TODO: move service connect logic from store to svelte component
+			tap(() =>
+				messagesService.onMessage((message) => update((messages) => [...messages, message]))
+			)
 		)
 	};
 };
