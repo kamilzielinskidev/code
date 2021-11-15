@@ -1,8 +1,8 @@
 - [ ] i'd like to send a message from pc and read it on my phone (as app/pwa)
   - [ ] connect FE with BE
     - [x] receive messages
-    - [ ] send messages
-  - [ ] full pwa experience (popup for install)
+    - [x] send messages
+  - [x] full pwa experience (popup for install)
   - [ ] persistent login (service workers state?)
 - [ ] i'd like to read last 10 messages on page load + live messages
   - [ ] setup database
