@@ -9,3 +9,6 @@ export const filter =
   <A>(fn: (a: A) => boolean) =>
   (a: A[]) =>
     a.filter(fn);
+
+export const compareStrings = (string1: string) => (string2: string) =>
+  string1.split("").sort().join() === string2.split("").sort().join();
