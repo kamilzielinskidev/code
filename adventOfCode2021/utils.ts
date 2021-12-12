@@ -1,4 +1,7 @@
-export const split = (a: string) => (b: string) => b.split(a);
+export const split =
+  <A extends unknown[]>(a: string) =>
+  (b: string) =>
+    b.split(a) as A;
 
 export const map =
   <A, B>(fn: (a: A) => B) =>
