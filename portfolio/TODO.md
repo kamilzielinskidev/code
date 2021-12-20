@@ -1,0 +1,19 @@
+- saving state in service worker
+- index page
+  - good looking code snippets
+  - typing effect for kamilzielinskidev
+  - go next button
+- animation between switching pages
+- sidebar navigation with /blog /articles /projects /contact
+- articles page (single toppic pages)
+  - posts preview similar to medium.com
+  - posts with like button
+  - tags
+  - posts with code snippets
+- blog page (daily work)
+  - full posts with lazy loading
+  - posts with like button
+  - posts with code snippets
+- projects page
+  - frontend - link to repo + demo (netlify)
+  - backend - link to repo + schemas/diagrams with interactions and flow + demo
