@@ -9,7 +9,7 @@ module.exports = {
     extend: {},
     fontFamily: {
       sans: "Poppins",
+      mono: "IBM Plex Mono"
     },
   },
-  plugins: [require("daisyui")],
 };

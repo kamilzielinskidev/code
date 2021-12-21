@@ -1,24 +1,25 @@
 import type { NextPage } from "next";
-import { AiOutlineArrowRight } from "react-icons/ai";
+import "react-typist/dist/Typist.css";
 
-import { BlinkingBlock } from "../common/components/BlinkingBlock";
-import { IconButton } from "../common/components/IconButton";
+import { Button } from "antd";
+import { AiOutlineArrowRight } from "react-icons/ai";
+import Typist from "react-typist";
+
 import { NavigationAnimation } from "../modules/navigation/components/NavigationAnimation";
 
 const Home: NextPage = () => {
   return (
     <NavigationAnimation>
-      <div className="h-screen flex flex-col items-center justify-center">
-        <h1 className="text-primary text-2xl font-sans">
-          Kamil Zieliński
-          <BlinkingBlock />
+      <main className="h-screen flex flex-col items-center justify-center">
+        <h1 className="font-mono">
+          <Typist startDelay={500} cursor={{ element: "█" }}>
+            kamilzielinskidev
+          </Typist>
         </h1>
         <div className="mt-8">
-          <IconButton>
-            <AiOutlineArrowRight className="text-primary" size={"2rem"} />
-          </IconButton>
+          <Button icon={<AiOutlineArrowRight size={"100%"} />} size="large" />
         </div>
-      </div>
+      </main>
     </NavigationAnimation>
   );
 };

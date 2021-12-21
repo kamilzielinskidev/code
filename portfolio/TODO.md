@@ -1,8 +1,8 @@
 - saving state in service worker
-- index page
-  - good looking code snippets
-  - typing effect for kamilzielinskidev
-  - go next button
+- [ ] index page
+  - [ ] good looking code snippets
+  - [x] typing effect for kamilzielinskidev
+  - [x] go next button
 - animation between switching pages
 - sidebar navigation with /blog /articles /projects /contact
 - articles page (single toppic pages)
