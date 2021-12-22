@@ -7,16 +7,16 @@ import Typist from "react-typist";
 
 import { NavigationAnimation } from "../modules/navigation/components/NavigationAnimation";
 
-const Home: NextPage = () => {
+const Index: NextPage = () => {
   return (
     <NavigationAnimation>
       <main className="h-screen flex flex-col items-center justify-center">
-        <h1 className="font-mono">
+        <h1 className="font-mono text-xl">
           <Typist startDelay={500} cursor={{ element: "█" }}>
             kamilzielinskidev
           </Typist>
         </h1>
-        <div className="mt-8">
+        <div className="mt-2">
           <Button icon={<AiOutlineArrowRight size={"100%"} />} size="large" />
         </div>
       </main>
@@ -24,4 +24,4 @@ const Home: NextPage = () => {
   );
 };
 
-export default Home;
+export default Index;
