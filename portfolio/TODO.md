@@ -7,7 +7,7 @@
   - [x] go next button
 - [ ] blog page (daily work)
   - [x] posts with like button
-  - [ ] monospaced font in posts titles
+  - [x] monospaced font in posts titles
   - [ ] general page design
 - articles page (single toppic pages)
   - posts preview similar to medium.com
