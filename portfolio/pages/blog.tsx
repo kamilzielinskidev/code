@@ -7,22 +7,26 @@ import { BlogPost } from "../modules/blog/components/BlogPost";
 import { BlogPost as BP } from "../modules/blog/model";
 import { NavigationAnimation } from "../modules/navigation/components/NavigationAnimation";
 
-const MOCKPOSTS: BP[] = Array(3)
+const MOCKPOSTS = Array(3)
   .fill(null)
-  .map(() => ({
-    id: Faker.datatype.uuid(),
-    date: Faker.date.recent(3),
-    title: Faker.hacker.phrase(),
-    content: Faker.lorem.paragraphs(10),
-    likes: Faker.datatype.number(100),
-    tags: Array(5).fill(null).map(Faker.hacker.phrase),
-  }));
+  .map(
+    (): BP => ({
+      id: Faker.datatype.uuid(),
+      date: Faker.date.recent(3),
+      title: Faker.hacker.phrase(),
+      author: "kamilzielinskidev",
+      content: Faker.lorem.paragraphs(10),
+      likes: Faker.datatype.number(100),
+      tags: Array(5).fill(null).map(Faker.hacker.phrase),
+    })
+  );
 
 const Blog: NextPage = () => {
   return (
     <NavigationAnimation>
       <main>
-        <div className="flex flex-col gap-y-4">
+        {/* TODO: move to BlogPostS component */}
+        <div className="flex flex-col px-6 py-10 gap-y-9">
           {MOCKPOSTS.map((post) => (
             <BlogPost key={post.id} {...post} />
           ))}

@@ -1,14 +1,17 @@
 - saving state in service worker
 - animation between switching pages
-- [ ] sidebar navigation with /blog /articles /projects /contact
+- [ ] whole screen navigation with /blog /contact
 - [ ] dark mode
+- [ ] bottom floating button for context action (open navigation, close navigation, like the post, comment the post etc)
+- [ ] comments for blog posts
+- [ ] light current reading post marking for context action button to know where to apply
 - [x] index page
   - [x] typing effect for kamilzielinskidev
   - [x] go next button
-- [ ] blog page (daily work)
+- [x] ~~blog page (daily work)~~
   - [x] posts with like button
   - [x] monospaced font in posts titles
-  - [ ] general page design
+  - [x] general page design
 - articles page (single toppic pages)
   - posts preview similar to medium.com
   - posts with like button
