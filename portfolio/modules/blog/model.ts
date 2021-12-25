@@ -4,6 +4,7 @@ export type BlogPost = {
   title: string;
   author: string;
   content: string;
-  likes: number;
+  likesAmount: number;
   tags: string[];
+  commentsAmount: number;
 };

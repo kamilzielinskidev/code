@@ -19,7 +19,7 @@ function MyApp({ Component, pageProps }: AppProps) {
     });
   }, []);
   return (
-    <div className="w-screen h-screen flex justify-center">
+    <div className="h-screen flex justify-center">
       <AnimatePresence exitBeforeEnter>
         <div className="max-w-2xl">
           <Component {...pageProps} />
