@@ -1,8 +1,7 @@
 - saving state in service worker
-- animation between switching pages
 - [ ] whole screen navigation with /blog /contact
-- [ ] dark mode
 - [ ] bottom floating button for context action (open navigation, close navigation, like the post, comment the post etc)
+- [ ] dark mode
 - [ ] comments for blog posts
 - [ ] light current reading post marking for context action button to know where to apply
 - [x] index page

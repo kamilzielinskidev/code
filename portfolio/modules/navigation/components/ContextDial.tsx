@@ -9,6 +9,7 @@ import { ContextAction } from "../models";
 export const BasicSpeedDial: FC<{
   actions: ContextAction[];
 }> = ({ children, actions }) => {
+  // TODO: use service worker storage
   const [isOpen, setIsOpen] = useState(false);
   return (
     <>
