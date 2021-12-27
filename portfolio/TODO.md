@@ -1,4 +1,4 @@
-- saving state in service worker
+- [ ] saving state in service worker
 - [ ] whole screen navigation with /blog /contact
 - [ ] bottom floating button for context action (open navigation, close navigation, like the post, comment the post etc)
 - [ ] dark mode
@@ -7,10 +7,11 @@
 - [x] index page
   - [x] typing effect for kamilzielinskidev
   - [x] go next button
-- [x] ~~blog page (daily work)~~
+- [x] blog page (daily work)
   - [x] posts with like button
   - [x] monospaced font in posts titles
   - [x] general page design
+- [ ] project restructure, lib folder for non-react code ?
 - articles page (single toppic pages)
   - posts preview similar to medium.com
   - posts with like button

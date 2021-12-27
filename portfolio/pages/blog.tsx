@@ -9,8 +9,8 @@ import { BlogPost } from "../modules/blog/components/BlogPost";
 import { BlogPost as BP } from "../modules/blog/model";
 import { BasicSpeedDial } from "../modules/navigation/components/ContextDial";
 import { NavigationMenu } from "../modules/navigation/components/NavigationMenu";
-// import { Counter } from "../modules/counter";
 import { ContextAction } from "../modules/navigation/models";
+import { navigationState } from "../modules/navigation/state/state";
 
 const MOCKPOSTS = Array(3)
   .fill(null)
@@ -28,22 +28,33 @@ const MOCKPOSTS = Array(3)
   );
 
 const actions: ContextAction[] = [
-  { name: "menu", icon: AiOutlineMenu, action: () => console.log(123) },
+  {
+    name: "menu",
+    icon: AiOutlineMenu,
+    action: async () => {
+      // TODO: separate this
+      navigationState.then((state) => state.toggleIsMenuOpen(true));
+    },
+  },
 ];
 
 const Blog: NextPage = () => {
   useEffect(() => {
-    const counter = new Worker(
-      new URL("../modules/counter.ts", import.meta.url)
-    );
+    navigationState.then((state) => state.isMenuOpen().subscribe(console.log));
+  }, []);
 
-    counter.onmessage = (evt) => alert(`WebWorker Response => ${evt.data}`);
-
-    counter.postMessage("test");
-  });
   return (
     <NavigationMenu>
       <BasicSpeedDial actions={actions}>
+        <button
+          onClick={() =>
+            navigationState.then((state) =>
+              state.isMenuOpen().subscribe(console.log)
+            )
+          }
+        >
+          test
+        </button>
         <main>
           {/* TODO: move to BlogPostS component */}
           <div className="flex flex-col px-6 py-10 gap-y-9">
