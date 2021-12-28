@@ -14,7 +14,6 @@
     "@fontsource/poppins": "^4.5.0",
     "@mui/icons-material": "^5.2.5",
     "@mui/material": "^5.2.5",
-    "@types/date-fns": "^2.6.0",
     "@types/faker": "^5.5.9",
     "@types/react-syntax-highlighter": "^13.5.2",
     "@types/react-typist": "^2.0.3",

@@ -2,15 +2,16 @@ import type { NextPage } from "next";
 import "react-typist/dist/Typist.css";
 
 import Faker from "faker";
-import { useEffect } from "react";
 import { AiOutlineMenu } from "react-icons/ai";
 
+import { useLocalStorage } from "../common/state/useLocalStorage";
+import { TestComp } from "../common/TestComp";
+import { TestInputComp } from "../common/TestInputComp";
 import { BlogPost } from "../modules/blog/components/BlogPost";
 import { BlogPost as BP } from "../modules/blog/model";
-import { BasicSpeedDial } from "../modules/navigation/components/ContextDial";
 import { NavigationMenu } from "../modules/navigation/components/NavigationMenu";
-import { ContextAction } from "../modules/navigation/models";
-import { navigationState } from "../modules/navigation/state/state";
+import { BasicSpeedDial } from "../modules/ui/components/ContextDial";
+import { ContextAction } from "../modules/ui/models";
 
 const MOCKPOSTS = Array(3)
   .fill(null)
@@ -31,31 +32,22 @@ const actions: ContextAction[] = [
   {
     name: "menu",
     icon: AiOutlineMenu,
-    action: async () => {
-      // TODO: separate this
-      navigationState.then((state) => state.toggleIsMenuOpen(true));
-    },
+    action: () => {},
   },
 ];
 
 const Blog: NextPage = () => {
-  useEffect(() => {
-    navigationState.then((state) => state.isMenuOpen().subscribe(console.log));
-  }, []);
-
+  const [isMenuOpen] = useLocalStorage<boolean>("isMenuOpen");
+  const [isSomethingElse] = useLocalStorage<string>("isSomethingElse");
   return (
     <NavigationMenu>
       <BasicSpeedDial actions={actions}>
-        <button
-          onClick={() =>
-            navigationState.then((state) =>
-              state.isMenuOpen().subscribe(console.log)
-            )
-          }
-        >
-          test
-        </button>
         <main>
+          <div className="text-2xl">{JSON.stringify(isMenuOpen)}</div>
+          <div className="text-2xl">{isSomethingElse}</div>
+
+          <TestComp />
+          <TestInputComp />
           {/* TODO: move to BlogPostS component */}
           <div className="flex flex-col px-6 py-10 gap-y-9">
             {MOCKPOSTS.map((post) => (
