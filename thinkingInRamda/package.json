@@ -1,0 +1,22 @@
+{
+	"name": "thinkingInRamda",
+	"version": "1.0.0",
+	"description": "",
+	"main": "index.js",
+	"scripts": {
+		"start:4": "nodemon --watch part4.ts --exec ts-node-transpile-only part4.ts",
+		"start:5": "nodemon --watch part5.ts --exec ts-node-transpile-only part5.ts",
+		"start:6": "nodemon --watch part6.ts --exec ts-node-transpile-only part6.ts",
+		"start:8": "nodemon --watch part8.ts --exec ts-node-transpile-only part8.ts"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"dependencies": {
+		"@types/node": "^15.6.1",
+		"nodemon": "^2.0.7",
+		"rambda": "^6.7.0",
+		"ts-node": "^10.0.0",
+		"typescript": "^4.3.2"
+	}
+}
