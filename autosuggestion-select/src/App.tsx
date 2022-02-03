@@ -1,3 +1,10 @@
 import { FC } from "react";
 
-export const App: FC = () => <div></div>;
+import styles from "./App.module.css";
+import { AutosuggestionSelect } from "./components/autosuggestion-select/AutosuggestionSelect";
+
+export const App: FC = () => (
+  <div className={styles.container}>
+    <AutosuggestionSelect />
+  </div>
+);
