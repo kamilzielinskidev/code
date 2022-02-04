@@ -1,0 +1,15 @@
+.popup {
+  background: #fff;
+  border: 2px solid #1a1a1a;
+  width: 312px;
+  height: 400px;
+  position: absolute;
+}
+
+.from-left {
+  left: 0;
+}
+
+.from-right {
+  right: 0;
+}

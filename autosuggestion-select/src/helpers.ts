@@ -1,4 +1,4 @@
-type Callback<A, B> = (a: A) => B;
+export type Callback<A, B> = (a: A) => B;
 
 // TODO: test
 export const andThen =

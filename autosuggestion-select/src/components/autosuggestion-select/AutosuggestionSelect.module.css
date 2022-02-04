@@ -1,3 +1,7 @@
+.container {
+  position: relative;
+}
+
 .select {
   color: #1a1a1a;
   font-size: 1rem;
@@ -9,4 +13,13 @@
 
 .select:hover {
   border: 2px solid #1a1a1a;
+}
+
+.select--open {
+  border: 2px solid #1a1a1a;
+}
+
+.popup-over-hack {
+  position: relative;
+  top: -2px;
 }
