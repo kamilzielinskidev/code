@@ -8,3 +8,8 @@ export const andThen =
 
 export const tapAfterHalfSecond = (a: Callback<void, void>) =>
   setTimeout(a, 500);
+
+export const map =
+  <A, B>(a: Callback<A, B>) =>
+  (b: A[]) =>
+    b.map(a);

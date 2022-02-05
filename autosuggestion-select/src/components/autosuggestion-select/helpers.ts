@@ -1,5 +1,10 @@
 import { Callback } from "../../helpers";
-import { PopupHorizontalPosition, Styles } from "./models";
+import {
+  PopupHorizontalPosition,
+  Styles,
+  University,
+  UniversityResponse,
+} from "./models";
 
 // TODO: test
 export const callbackIfElNotInPath =
@@ -19,3 +24,7 @@ export const popupHorizontalPosition =
 export const popupPosition =
   (styles: Styles) => (position: PopupHorizontalPosition) =>
     position === "START" ? styles["from-left"] : styles["from-right"];
+
+export const universityResponseToUniversity = ({
+  name,
+}: UniversityResponse): University => ({ name });
