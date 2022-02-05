@@ -2,24 +2,15 @@
   position: relative;
 }
 
-.select {
-  color: #1a1a1a;
-  font-size: 1rem;
-  padding: 0.5rem 0.33rem;
-  background-color: #fff;
-  border: 1px solid #1a1a1a;
-  cursor: pointer;
+.popup-container-over {
+  position: absolute;
+  top: 54px;
 }
 
-.select:hover {
-  border: 2px solid #1a1a1a;
+.from-left {
+  left: 0;
 }
 
-.select--open {
-  border: 2px solid #1a1a1a;
-}
-
-.popup-over-hack {
-  position: relative;
-  top: -2px;
+.from-right {
+  right: 0;
 }

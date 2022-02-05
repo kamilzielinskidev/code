@@ -1,25 +1,23 @@
 import { FC, useRef } from "react";
+import { POPUP_WIDTH } from "../../constants";
 
-import { Callback } from "../../../../helpers";
 import { useClickOutside } from "../../hooks/useClickOutside";
-import { PopupHorizontalPosition } from "../../models";
-import { popupPosition } from "./helpers";
+import { usePressEscape } from "../../hooks/usePressEscape";
+import { useUIState } from "../../state";
 import styles from "./PopupContainer.module.css";
 
-type Props = {
-  position: PopupHorizontalPosition;
-  clickOutside: Callback<void, void>;
-};
-
-export const PopupContainer: FC<Props> = ({ position, clickOutside }) => {
+export const PopupContainer: FC = ({ children }) => {
+  const { togglePopup } = useUIState();
   const divRef = useRef<HTMLDivElement>(null);
 
-  useClickOutside(divRef, clickOutside);
+  const close = () => togglePopup(false);
+
+  useClickOutside(divRef, close);
+  usePressEscape(close);
 
   return (
-    <div
-      ref={divRef}
-      className={`${styles.popup} ${popupPosition(styles)(position)}`}
-    ></div>
+    <div ref={divRef} className={styles.popup} style={{ width: POPUP_WIDTH }}>
+      {children}
+    </div>
   );
 };
