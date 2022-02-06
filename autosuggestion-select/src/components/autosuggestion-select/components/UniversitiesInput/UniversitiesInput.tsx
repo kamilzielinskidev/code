@@ -1,12 +1,17 @@
-import { FC, useState } from "react";
+import { FC, useEffect, useState } from "react";
 
-import { useUniversitiesState } from "../../state";
-import { getUniversities } from "./helpers";
+import { F, pipe } from "@mobily/ts-belt";
+
+import { useQueryState, useAPIUniversitiesState } from "../../state";
+import { callWithValue, getUniversities } from "./helpers";
 import styles from "./UniversitiesInput.module.css";
 
 export const UniversitiesInput: FC = () => {
   const [isFocused, setIsFocused] = useState(false);
-  const { changeUniversities } = useUniversitiesState();
+  const { changeAPIUniversities } = useAPIUniversitiesState();
+  const { changeQuery, clearQuery } = useQueryState();
+
+  useEffect(clearQuery, []);
 
   const focus = () => setIsFocused(true);
   const unFocus = () => setIsFocused(false);
@@ -24,7 +29,13 @@ export const UniversitiesInput: FC = () => {
           placeholder="Szukaj uniwersytetu"
           onFocus={focus}
           onBlur={unFocus}
-          onChange={getUniversities(changeUniversities)}
+          onChange={callWithValue((value) =>
+            pipe(
+              value,
+              F.tap(getUniversities(changeAPIUniversities)),
+              F.tap(changeQuery)
+            )
+          )}
           aria-label="Szukaj uniwersytetu"
         />
       </div>

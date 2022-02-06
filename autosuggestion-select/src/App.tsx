@@ -5,6 +5,6 @@ import { AutosuggestionSelect } from "./components/autosuggestion-select/Autosug
 
 export const App: FC = () => (
   <div className={styles.container}>
-    <AutosuggestionSelect />
+    <AutosuggestionSelect onPick={(a) => console.log(a)} />
   </div>
 );

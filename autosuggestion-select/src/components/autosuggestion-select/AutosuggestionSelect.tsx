@@ -1,4 +1,5 @@
-import { FC, useRef } from "react";
+import { FC, useEffect, useRef } from "react";
+import { Callback } from "../../helpers";
 
 import styles from "./AutosuggestionSelect.module.css";
 import { PopupContainer } from "./components/PopupContainer/PopupContainer";
@@ -7,12 +8,26 @@ import { UniversitiesInput } from "./components/UniversitiesInput/UniversitiesIn
 import { UniversitiesList } from "./components/UniversitiesList/UniversitiesList";
 import { POPUP_WIDTH } from "./constants";
 import { popupHorizontalPosition, popupPosition } from "./helpers";
-import { useUIState, useUniversitiesState } from "./state";
+import { University } from "./models";
+import {
+  useQueryState,
+  useUIState,
+  useUniversitiesPicksState,
+  useAPIUniversitiesState,
+} from "./state";
 
-export const AutosuggestionSelect: FC = () => {
+type Props = {
+  onPick: Callback<University[], void>;
+};
+
+export const AutosuggestionSelect: FC<Props> = ({ onPick }) => {
   const selectButtonRef = useRef<HTMLButtonElement>(null);
   const { isPopupOpen } = useUIState();
-  const { universities } = useUniversitiesState();
+  const { APIuniversities } = useAPIUniversitiesState();
+  const { pickedUniversities } = useUniversitiesPicksState();
+  const { query } = useQueryState();
+
+  useEffect(() => onPick(pickedUniversities), [pickedUniversities]);
 
   return (
     <div className={styles.container}>
@@ -28,7 +43,9 @@ export const AutosuggestionSelect: FC = () => {
           {isPopupOpen && (
             <PopupContainer>
               <UniversitiesInput />
-              {universities && <UniversitiesList universities={universities} />}
+              <UniversitiesList
+                universities={query ? APIuniversities : pickedUniversities}
+              />
             </PopupContainer>
           )}
         </div>
