@@ -6,9 +6,6 @@ export const andThen =
   (b: Promise<A>) =>
     b.then(a);
 
-export const tapAfterHalfSecond = (a: Callback<void, void>) =>
-  setTimeout(a, 500);
-
 export const map =
   <A, B>(a: Callback<A, B>) =>
   (b: A[]) =>

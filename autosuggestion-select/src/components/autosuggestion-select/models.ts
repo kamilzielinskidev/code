@@ -3,6 +3,7 @@ export type PopupHorizontalPosition = "START" | "END";
 export type Styles = Readonly<Record<string, string>>;
 
 export type University = {
+  id: number;
   name: string;
 };
 

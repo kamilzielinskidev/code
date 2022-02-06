@@ -11,5 +11,5 @@ export const usePressEscape = (callback: Callback<void, void>) => {
 
     document.addEventListener("keydown", usePressEscape);
     return () => document.removeEventListener("keydown", usePressEscape);
-  });
+  }, []);
 };

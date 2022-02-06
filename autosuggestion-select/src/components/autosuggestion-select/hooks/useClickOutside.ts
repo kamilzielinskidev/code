@@ -13,5 +13,5 @@ export const useClickOutside = (
 
     document.addEventListener("click", useClickOutside);
     return () => document.removeEventListener("click", useClickOutside);
-  });
+  }, []);
 };

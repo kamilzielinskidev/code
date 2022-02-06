@@ -25,6 +25,8 @@ export const popupPosition =
   (styles: Styles) => (position: PopupHorizontalPosition) =>
     position === "START" ? styles["from-left"] : styles["from-right"];
 
+const generateID = () => new Date().getTime() + Math.random();
+
 export const universityResponseToUniversity = ({
   name,
-}: UniversityResponse): University => ({ name });
+}: UniversityResponse): University => ({ id: generateID(), name });

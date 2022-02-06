@@ -1,0 +1,26 @@
+.item {
+  display: flex;
+  padding: 0.66rem 0.5rem;
+}
+
+.item:hover {
+  background-color: #eee;
+}
+
+.text {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 100%;
+}
+
+.checkmark {
+  flex-shrink: 0;
+  width: 30px;
+  height: 30px;
+}
+
+input[type="checkbox"] {
+  width: 0;
+  height: 0;
+}

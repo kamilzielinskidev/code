@@ -2,8 +2,9 @@
 - [x] closing up the popup on escape
 - [x] input fetching data
 - [x] storing the universities data
-- [ ] displaying the universities
-- [ ] checkmarking universities
+- [x] displaying the universities
+- [x] checkmarking universities
+- [ ] state of universities
 - [ ] reseting checkmarks
 - [ ] amount of checked universities
 

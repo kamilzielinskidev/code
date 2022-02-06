@@ -4,6 +4,7 @@ import styles from "./AutosuggestionSelect.module.css";
 import { PopupContainer } from "./components/PopupContainer/PopupContainer";
 import { SelectButton } from "./components/SelectButton/SelectButton";
 import { UniversitiesInput } from "./components/UniversitiesInput/UniversitiesInput";
+import { UniversitiesList } from "./components/UniversitiesList/UniversitiesList";
 import { POPUP_WIDTH } from "./constants";
 import { popupHorizontalPosition, popupPosition } from "./helpers";
 import { useUIState, useUniversitiesState } from "./state";
@@ -27,7 +28,7 @@ export const AutosuggestionSelect: FC = () => {
           {isPopupOpen && (
             <PopupContainer>
               <UniversitiesInput />
-              {JSON.stringify(universities)}
+              {universities && <UniversitiesList universities={universities} />}
             </PopupContainer>
           )}
         </div>
