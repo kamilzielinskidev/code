@@ -1,7 +1,7 @@
 import { FC } from "react";
 
-import { University } from "../../models";
-import { useUniversitiesPicksState } from "../../state";
+import { University } from "../../domains/university";
+import { useActions } from "../../states/actions";
 import { check } from "./helpers";
 import styles from "./UniversityItem.module.css";
 
@@ -10,29 +10,25 @@ type Props = {
 };
 
 export const UniversityItem: FC<Props> = ({ university }) => {
-  const {
-    addUniversity,
-    removeUniversity,
-    pickedUniversities: universities,
-  } = useUniversitiesPicksState();
-
-  const isPicked = universities.includes(university);
+  const { pickUniversity, unpickUniversity } = useActions;
 
   return (
     <label className={styles.item}>
       <input
         type="checkbox"
-        checked={isPicked}
+        checked={university.isPicked}
         onChange={check((a) =>
-          a ? addUniversity(university) : removeUniversity(university)
+          a ? pickUniversity(university) : unpickUniversity(university)
         )}
       />
       <span
-        className={`${styles.text} ${isPicked && styles["text--is-picked"]}`}
+        className={`${styles.text} ${
+          university.isPicked && styles["text--is-picked"]
+        }`}
       >
         {university.name}
       </span>
-      <div className={styles.checkmark}>{isPicked ? "✓" : ""}</div>
+      <div className={styles.checkmark}>{university.isPicked ? "✓" : ""}</div>
     </label>
   );
 };

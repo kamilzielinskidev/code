@@ -1,13 +1,12 @@
 import { forwardRef } from "react";
 
-import { useUIState } from "../../state";
+import { useActions } from "../../states/actions";
+import { useSelector } from "../../states/selectors";
 import styles from "./SelectButton.module.css";
 
 export const SelectButton = forwardRef<HTMLButtonElement>((_, ref) => {
-  const { isPopupOpen, togglePopup } = useUIState();
-
-  const open = () => togglePopup(true);
-  const close = () => togglePopup(false);
+  const { openPopup, closePopup } = useActions;
+  const { isPopupOpen } = useSelector();
 
   return (
     <button
@@ -15,7 +14,7 @@ export const SelectButton = forwardRef<HTMLButtonElement>((_, ref) => {
       className={`${styles.select} ${isPopupOpen && styles["select--open"]}`}
       aria-haspopup="true"
       aria-expanded={isPopupOpen}
-      onClick={isPopupOpen ? close : open}
+      onClick={() => (isPopupOpen ? closePopup() : openPopup())}
     >
       Universities
       {

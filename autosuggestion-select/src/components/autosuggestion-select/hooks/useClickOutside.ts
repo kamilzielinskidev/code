@@ -1,7 +1,6 @@
 import { RefObject, useEffect } from "react";
 
-import { Callback } from "../../../helpers";
-import { callbackIfElNotInPath } from "../helpers";
+import { Callback, callbackIfElNotInPath } from "../../../helpers";
 
 export const useClickOutside = (
   ref: RefObject<HTMLElement>,

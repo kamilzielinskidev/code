@@ -6,11 +6,13 @@
 - [x] checkmarking universities
 - [x] state of universities
 - [x] bold the picked uni item
-- [ ] merge fetched unis with the picked ones, rest only fetched ones
+- [x] merge fetched unis with the picked ones, rest only fetched ones
 
 
 
 - [ ] amount of checked universities
 - [ ] reseting checkmarks
-- [ ] input fetching delay
+- [ ] error handling for unfetched unis
+- [ ] loader
+- [ ] input fetching delay + fetch cancelation
 - [ ] tests

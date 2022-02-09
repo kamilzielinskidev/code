@@ -1,16 +1,30 @@
-import { pipe } from "@mobily/ts-belt";
-
-import { andThen, map } from "../../helpers";
+import { A, pipe } from "@mobily/ts-belt";
+import { andThen, getUniquesItemsByProp } from "../../helpers";
 import { get } from "../../lib/fetch";
-import { API_UNI_FETCH_URL } from "./constants";
-import { universityResponseToUniversity } from "./helpers";
-import { UniversityResponse } from "./models";
+import { createUniversity } from "./domains/university";
 
-export type UniversitiesResponse = UniversityResponse[];
+type UniversityResponse = {
+  web_pages: string[];
+  name: string;
+  "state-province": null;
+  domains: string[];
+  alpha_two_code: "PL";
+  country: "Poland";
+};
 
-// TODO: test
-export const fetchUniversities = (query: string) =>
+type UniversitiesResponse = UniversityResponse[];
+
+//TODO: test
+export const API_UNI_FETCH_URL = (query: string) =>
+  `http://universities.hipolabs.com/search?country=poland&name=${query}`;
+
+export const getUniversities = (query: string) =>
+  get<UniversitiesResponse>(API_UNI_FETCH_URL(query));
+
+export const getQueriedUniversities = (query: string) =>
   pipe(
-    get<UniversitiesResponse>(API_UNI_FETCH_URL(query)),
-    andThen(map(universityResponseToUniversity))
+    query,
+    getUniversities,
+    andThen(A.map(({ name }) => createUniversity(name))),
+    andThen((universities) => getUniquesItemsByProp(universities)("name"))
   );

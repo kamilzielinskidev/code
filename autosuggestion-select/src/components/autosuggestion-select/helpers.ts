@@ -1,19 +1,7 @@
-import { Callback } from "../../helpers";
-import {
-  PopupHorizontalPosition,
-  Styles,
-  University,
-  UniversityResponse,
-} from "./models";
-
-// TODO: test
-export const callbackIfElNotInPath =
-  (e: MouseEvent) => (el: HTMLElement) => (callback: Callback<void, void>) =>
-    !e.composedPath().some((pathEl) => pathEl === el) && callback();
-
-export const callbackIfKeydownEnter =
-  (e: KeyboardEvent) => (callback: Callback<void, void>) =>
-    e.key === "Escape" && callback();
+import { A, D } from "@mobily/ts-belt";
+import { Styles } from "../../models";
+import { Universities } from "./domains/university";
+import { PopupHorizontalPosition } from "./models";
 
 // TODO: test
 export const popupHorizontalPosition =
@@ -25,8 +13,5 @@ export const popupPosition =
   (styles: Styles) => (position: PopupHorizontalPosition) =>
     position === "START" ? styles["from-left"] : styles["from-right"];
 
-const generateID = () => new Date().getTime() * Math.random();
-
-export const universityResponseToUniversity = ({
-  name,
-}: UniversityResponse): University => ({ id: generateID(), name });
+export const clearUniversities = (universities: Universities) =>
+  A.map(universities, D.getUnsafe("name"));

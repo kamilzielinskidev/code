@@ -1,19 +1,17 @@
 import { FC, useRef } from "react";
-import { POPUP_WIDTH } from "../../constants";
 
+import { POPUP_WIDTH } from "../../constants";
 import { useClickOutside } from "../../hooks/useClickOutside";
 import { usePressEscape } from "../../hooks/usePressEscape";
-import { useUIState } from "../../state";
+import { useActions } from "../../states/actions";
 import styles from "./PopupContainer.module.css";
 
 export const PopupContainer: FC = ({ children }) => {
-  const { togglePopup } = useUIState();
+  const { closePopup } = useActions;
   const divRef = useRef<HTMLDivElement>(null);
 
-  const close = () => togglePopup(false);
-
-  useClickOutside(divRef, close);
-  usePressEscape(close);
+  useClickOutside(divRef, closePopup);
+  usePressEscape(closePopup);
 
   return (
     <div ref={divRef} className={styles.popup} style={{ width: POPUP_WIDTH }}>

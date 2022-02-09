@@ -1,7 +1,6 @@
 import { useEffect } from "react";
 
-import { Callback } from "../../../helpers";
-import { callbackIfKeydownEnter } from "../helpers";
+import { Callback, callbackIfKeydownEnter } from "../../../helpers";
 
 export const usePressEscape = (callback: Callback<void, void>) => {
   useEffect(() => {

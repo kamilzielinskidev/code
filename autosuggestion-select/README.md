@@ -1,6 +1,14 @@
 ## autosuggestion-select
 Some fancy project description here
 
+## how to run
+
+- build with node 16.11, npm 8.0
+
+```
+npm i
+npm start
+```
 
 ## Available Scripts
 

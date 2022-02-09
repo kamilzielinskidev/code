@@ -1,19 +1,23 @@
 import { FC } from "react";
 
-import { University } from "../../models";
+import { useSelector } from "../../states/selectors";
 import { UniversityItem } from "../UniversityItem/UniversityItem";
 import styles from "./UniversitiesList.module.css";
 
-type Props = {
-  universities: University[];
-};
+export const UniversitiesList: FC = () => {
+  const { availableUniversities, pickedUniversities, query } = useSelector();
 
-export const UniversitiesList: FC<Props> = ({ universities }) => (
-  <ul className={styles.list}>
-    {universities.map((university) => (
-      <li key={university.id}>
-        <UniversityItem university={university} />
-      </li>
-    ))}
-  </ul>
-);
+  const universitiesToDisplay = query
+    ? availableUniversities
+    : pickedUniversities;
+
+  return (
+    <ul className={styles.list}>
+      {universitiesToDisplay.map((university) => (
+        <li key={university.name}>
+          <UniversityItem university={university} />
+        </li>
+      ))}
+    </ul>
+  );
+};

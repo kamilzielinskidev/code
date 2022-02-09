@@ -26,6 +26,17 @@
     "extends": [
       "react-app",
       "react-app/jest"
+    ],
+    "overrides": [
+      {
+        "files": [
+          "**/*.ts?(x)"
+        ],
+        "rules": {
+          "@typescript-eslint/consistent-type-assertions": 0,
+          "react-hooks/exhaustive-deps": 0
+        }
+      }
     ]
   },
   "browserslist": {

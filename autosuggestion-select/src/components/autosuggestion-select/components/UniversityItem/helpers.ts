@@ -1,6 +1,5 @@
-import { ChangeEvent } from "react";
-
 import { D, pipe } from "@mobily/ts-belt";
+import { ChangeEvent } from "react";
 
 import { Callback } from "../../../../helpers";
 

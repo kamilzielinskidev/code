@@ -1,38 +1,39 @@
 import { FC, useEffect, useRef } from "react";
-import { Callback } from "../../helpers";
 
+import { Callback } from "../../helpers";
 import styles from "./AutosuggestionSelect.module.css";
 import { PopupContainer } from "./components/PopupContainer/PopupContainer";
 import { SelectButton } from "./components/SelectButton/SelectButton";
 import { UniversitiesInput } from "./components/UniversitiesInput/UniversitiesInput";
 import { UniversitiesList } from "./components/UniversitiesList/UniversitiesList";
 import { POPUP_WIDTH } from "./constants";
-import { popupHorizontalPosition, popupPosition } from "./helpers";
-import { University } from "./models";
+
 import {
-  useQueryState,
-  useUIState,
-  useUniversitiesPicksState,
-  useAPIUniversitiesState,
-} from "./state";
+  clearUniversities,
+  popupHorizontalPosition,
+  popupPosition,
+} from "./helpers";
+import { useSelector } from "./states/selectors";
 
 type Props = {
-  onPick: Callback<University[], void>;
+  onPick: Callback<Readonly<string[]>, void>;
 };
 
 export const AutosuggestionSelect: FC<Props> = ({ onPick }) => {
   const selectButtonRef = useRef<HTMLButtonElement>(null);
-  const { isPopupOpen } = useUIState();
-  const { APIuniversities } = useAPIUniversitiesState();
-  const { pickedUniversities } = useUniversitiesPicksState();
-  const { query } = useQueryState();
+  const { isPopupOpen, pickedUniversities } = useSelector();
 
-  useEffect(() => onPick(pickedUniversities), [pickedUniversities]);
+  useEffect(
+    () => onPick(clearUniversities(pickedUniversities)),
+    [pickedUniversities]
+  );
 
   return (
     <div className={styles.container}>
       <SelectButton ref={selectButtonRef} />
+
       {selectButtonRef.current && (
+        // TODO: extract this
         <div
           className={`${styles["popup-container-over"]} ${popupPosition(styles)(
             popupHorizontalPosition(window)(selectButtonRef.current)(
@@ -43,9 +44,7 @@ export const AutosuggestionSelect: FC<Props> = ({ onPick }) => {
           {isPopupOpen && (
             <PopupContainer>
               <UniversitiesInput />
-              <UniversitiesList
-                universities={query ? APIuniversities : pickedUniversities}
-              />
+              <UniversitiesList />
             </PopupContainer>
           )}
         </div>
