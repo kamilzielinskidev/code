@@ -1,3 +1,4 @@
+import { AvailableRate } from "./domain/availableRate";
 import { getCurrencies } from "./service";
 
 jest.mock("./api", () => ({
@@ -9,5 +10,8 @@ jest.mock("./api", () => ({
 }));
 
 it("should get list of currencies codes", () => {
-  expect(getCurrencies()).resolves.toEqual(["A", "B"]);
+  expect(getCurrencies()).resolves.toEqual([
+    AvailableRate({ code: "A" }),
+    AvailableRate({ code: "B" }),
+  ]);
 });
