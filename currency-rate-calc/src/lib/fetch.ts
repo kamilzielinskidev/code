@@ -4,7 +4,6 @@ import { D, pipe } from "@mobily/ts-belt";
 
 import { andThen } from "../helpers";
 
-// TODO: use Optional here
 export const andThenPluckData = <A>(a: Promise<AxiosResponse<A>>) =>
   pipe(a, andThen(D.getUnsafe("data")));
 

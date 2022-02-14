@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 
-import App from "./lib/view/components/App";
+import { App } from "./modules/view/components/App";
 
 import "@fontsource/roboto/300.css";
 import "@fontsource/roboto/400.css";

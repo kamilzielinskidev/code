@@ -1,7 +1,9 @@
-export type AvailableRate = {
+type AvailableRateP = {
   code: string;
 };
 
-export const AvailableRate = (availableRate: AvailableRate) => ({
-  value: availableRate,
-});
+export type AvailableRate = Readonly<AvailableRateP>;
+
+export type AvailableRates = ReadonlyArray<AvailableRateP>;
+
+export const AvailableRate = (availableRate: AvailableRate) => availableRate;

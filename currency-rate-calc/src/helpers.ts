@@ -1,9 +1,8 @@
-import { A, D, pipe } from "@mobily/ts-belt";
+export type Callback<A, B> = (a: A) => B;
 
-import { CurrenciesResponse } from "./api";
-import { AvailableRate } from "./domain/availableRate";
+export const andThen =
+  <A, B>(a: Callback<A, B>) =>
+  (b: Promise<A>) =>
+    b.then(a);
 
-export const mapCurrenciesResponseToCurrenciesList = (a: CurrenciesResponse) =>
-  A.map(a, (a) =>
-    pipe(a, D.getUnsafe("code"), (code) => AvailableRate({ code }))
-  );
+// TODO: add andCatch
