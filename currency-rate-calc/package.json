@@ -16,7 +16,6 @@
     "@emotion/styled": "^11.6.0",
     "@fontsource/roboto": "^4.5.3",
     "@mobily/ts-belt": "^3.9.0",
-    "@mui/material": "^5.4.1",
     "@types/jest": "^27.4.0",
     "@types/node": "^16.11.24",
     "@types/react": "^17.0.39",

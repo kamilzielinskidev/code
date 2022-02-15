@@ -1,3 +1,4 @@
 - [ ] loader
 - [ ] error handling
-- [ ] separate components
+- [ ] fetch debouncing + request cancelation
+- [x] separate components
