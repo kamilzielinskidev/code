@@ -1,7 +1,7 @@
 import { rateState } from "./rateState";
 
 export const useRateState = () => {
-  const { currency, iHaveRate, iWantRate } = rateState();
+  const { currency, iHave, iWant } = rateState();
 
-  return { currency, iHaveRate, iWantRate };
+  return { currency, iHave, iWant };
 };

@@ -12,7 +12,7 @@ const MOCK_RESPONSE = {
 jest.spyOn(fetch, "get").mockResolvedValue(MOCK_RESPONSE);
 
 it("Should get list of currencies codes", () => {
-  expect(getRate({ currency: "CHF", icon: "🇨🇭" })).resolves.toEqual(
+  expect(getRate("CHF")).resolves.toEqual(
     Rate({ code: "CHF", date: new Date("2022-02-14"), value: 4.375 })
   );
 });

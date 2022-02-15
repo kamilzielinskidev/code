@@ -1,0 +1,3 @@
+- [ ] loader
+- [ ] error handling
+- [ ] separate components

@@ -3,19 +3,19 @@ import create from "zustand";
 import { Currency } from "../../../domain/currency";
 
 type RatesState = {
-  iHaveRate: number;
-  iWantRate: number;
-  currency: Currency["currency"];
-  changeIHaveRate: (a: number) => void;
-  changeIWantRate: (a: number) => void;
-  changeCurrency: (a: Currency["currency"]) => void;
+  iHave: string;
+  iWant: string;
+  currency: Currency;
+  changeIHave: (a: string) => void;
+  changeIWant: (a: string) => void;
+  changeCurrency: (a: Currency) => void;
 };
 
 export const rateState = create<RatesState>((set) => ({
-  iHaveRate: 0,
-  iWantRate: 0,
+  iHave: "",
+  iWant: "",
   currency: "CHF",
-  changeIHaveRate: (rate) => set({ iHaveRate: rate }),
-  changeIWantRate: (rate) => set({ iWantRate: rate }),
+  changeIHave: (amount) => set({ iHave: amount }),
+  changeIWant: (amount) => set({ iWant: amount }),
   changeCurrency: (currency) => set({ currency }),
 }));

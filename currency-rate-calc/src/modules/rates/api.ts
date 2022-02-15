@@ -1,12 +1,12 @@
 import { pipe } from "@mobily/ts-belt";
-import { Currency } from "../../domain/currency";
 
+import { Currency } from "../../domain/currency";
 import { Rate } from "../../domain/rate";
 import { andThen } from "../../helpers";
 import { get } from "../../lib/fetch";
 
-const CURRENCIES_API = (rate: Currency) =>
-  `https://api.nbp.pl/api/exchangerates/rates/a/${rate.currency}?format=json`;
+const CURRENCIES_API = (currency: Currency) =>
+  `https://api.nbp.pl/api/exchangerates/rates/a/${currency}?format=json`;
 
 type RateResponse = {
   table: string;

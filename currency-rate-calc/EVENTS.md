@@ -1,5 +1,0 @@
-- available currencies list fetched (+ err)
-- currency picked
-- 'got' value input (+ err)
-- 'want' value input (+ err)
-- currency value calculated based on fetched value (+ err)
