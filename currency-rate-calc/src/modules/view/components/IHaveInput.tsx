@@ -1,24 +1,17 @@
-import { FC } from "react";
+import { FC, memo } from "react";
 
-import { useChangeIHave } from "../../rates/lib/useChangeIHave";
-import { useRateState } from "../../rates/lib/useRateState";
+import { useIHave } from "../../rates/lib/useIHave";
 
-export const IHaveInput: FC = () => {
-  const changeIHave = useChangeIHave();
-  const { iHave } = useRateState();
+export const IHaveInput: FC = memo(() => {
+  const [iHave, changeIHave] = useIHave();
 
   return (
     <div>
       <div>I have:</div>
       <div>
-        <input
-          type="number"
-          min={0}
-          value={iHave}
-          onChange={(e) => changeIHave(e.target.value)}
-        />
+        <input value={iHave} onChange={(e) => changeIHave(e.target.value)} />
         PLN
       </div>
     </div>
   );
-};
+});

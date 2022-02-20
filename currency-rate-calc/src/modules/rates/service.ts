@@ -7,9 +7,11 @@ import { getRate } from "./api";
 export const cutDecimals = (value: number) =>
   pipe(
     value,
-    (a) => a.toFixed(3),
+    (a) => a.toFixed(4),
     (a) => parseFloat(a)
   );
+
+export const isStringANumber = (value: string) => !isNaN(parseFloat(value));
 
 export const divideByRate = (currency: Currency) => (value: number) =>
   pipe(

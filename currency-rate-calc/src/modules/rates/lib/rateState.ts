@@ -12,8 +12,8 @@ type RatesState = {
 };
 
 export const rateState = create<RatesState>((set) => ({
-  iHave: "",
-  iWant: "",
+  iHave: "0",
+  iWant: "0",
   currency: "CHF",
   changeIHave: (amount) => set({ iHave: amount }),
   changeIWant: (amount) => set({ iWant: amount }),

@@ -1,7 +1,12 @@
 import { Currency } from "../../domain/currency";
 import { Rate } from "../../domain/rate";
 import * as api from "./api";
-import { cutDecimals, divideByRate, multiplyByRate } from "./service";
+import {
+  cutDecimals,
+  divideByRate,
+  isStringANumber,
+  multiplyByRate,
+} from "./service";
 
 jest
   .spyOn(api, "getRate")
@@ -17,4 +22,9 @@ it("Should divide the value by received from api rate", async () => {
 
 it("Should multiply the value by received from api rate", async () => {
   expect(await multiplyByRate(Currency("CHF"))(1)).toBe(3);
+});
+
+it("Should return true for a number, false for NaN", () => {
+  expect(isStringANumber("1.43")).toBe(true);
+  expect(isStringANumber("a")).toBe(false);
 });

@@ -34,7 +34,9 @@
       "react-app/jest"
     ],
     "rules": {
-      "jest/valid-expect": 0
+      "jest/valid-expect": 0,
+      "react-hooks/exhaustive-deps": 0,
+      "@typescript-eslint/consistent-type-assertions": 0
     }
   },
   "private": true,

@@ -1,26 +1,18 @@
 import { FC } from "react";
 
 import { currencies, Currency } from "../../../domain/currency";
-import { useSelectCurrency } from "../../rates/lib/useChangeCurrency";
-import { useChangeIWant } from "../../rates/lib/useChangeIWant";
-import { useRateState } from "../../rates/lib/useRateState";
+import { useCurrency } from "../../rates/lib/useCurrency";
+import { useIWant } from "../../rates/lib/useIWant";
 
 export const IGetInput: FC = () => {
-  const selectCurrency = useSelectCurrency();
-  const changeIWant = useChangeIWant();
-
-  const { currency, iWant } = useRateState();
+  const [currency, selectCurrency] = useCurrency();
+  const [iWant, changeIWant] = useIWant();
 
   return (
     <div>
       <div>I get:</div>
       <div>
-        <input
-          type="number"
-          min={0}
-          value={iWant}
-          onChange={(e) => changeIWant(e.target.value)}
-        />
+        <input value={iWant} onChange={(e) => changeIWant(e.target.value)} />
         <select
           value={currency}
           onChange={(e) => {
