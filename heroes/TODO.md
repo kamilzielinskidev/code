@@ -1,0 +1,4 @@
+- [ ] initial screen render
+  - [ ] loading
+  - [ ] error
+  - [ ] data
