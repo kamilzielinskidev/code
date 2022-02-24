@@ -1,13 +1,14 @@
-import { Spin } from "antd";
+import "./index.css";
+import "antd/dist/antd.min.css";
+
 import React from "react";
 import ReactDOM from "react-dom";
-import "./index.css";
-import "antd/dist/antd.css";
+
+import { HeroesList } from "./modules/heroes-list/lib/view/components/HeroesList";
 
 ReactDOM.render(
   <React.StrictMode>
-    <h1 className="text-2xl">hello world</h1>
-    <Spin />
+    <HeroesList />
   </React.StrictMode>,
   document.getElementById("root")
 );

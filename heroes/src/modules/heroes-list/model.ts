@@ -6,6 +6,10 @@ type HeroM = {
   description: string;
 };
 
-export const Hero = (hero: Readonly<HeroM>) => hero;
+export type Hero = Readonly<HeroM>;
 
-export const HeroesList = (heroesList: ReadonlyArray<HeroM[]>) => heroesList;
+export type HeroesList = ReadonlyArray<HeroM>;
+
+export const Hero = (hero: Hero) => hero;
+
+export const HeroesList = (heroesList: HeroesList) => heroesList;

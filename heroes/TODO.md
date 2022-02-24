@@ -1,4 +1,10 @@
-- [ ] initial screen render
+- [x] initial screen render
+  - [x] loading
+  - [x] error
+  - [x] data
+- [ ] heroes list styling
+  - [ ] general
   - [ ] loading
   - [ ] error
   - [ ] data
+- [ ] move url to env var

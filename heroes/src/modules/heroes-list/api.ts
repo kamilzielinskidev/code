@@ -16,10 +16,6 @@ type HeroesListAPIResponse = {
   totalCount: number;
 };
 
-type HeroesListAPIError = {
-  message: string;
-};
-
 const mapHeroesListResponseToHeroesList = (response: HeroesListAPIResponse) =>
   response.data.map((data) =>
     Hero({
@@ -32,14 +28,6 @@ const mapHeroesListResponseToHeroesList = (response: HeroesListAPIResponse) =>
   );
 
 export const getHeroesList = () =>
-  get<HeroesListAPIError, HeroesListAPIResponse>(
-    "http://localhost:3000/heroes"
-  ).then((response) => {
-    if (response.status === "ERROR")
-      return { ...response, data: response.data.message };
-    else
-      return {
-        ...response,
-        data: mapHeroesListResponseToHeroesList(response.data),
-      };
-  });
+  get<HeroesListAPIResponse>("http://localhost:3000/heroes").then(
+    mapHeroesListResponseToHeroesList
+  );
