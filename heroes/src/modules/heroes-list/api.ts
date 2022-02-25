@@ -1,3 +1,4 @@
+import { backendUrl } from "../../common/backendUrl";
 import { get } from "../../lib/fetch";
 import { Hero } from "./model";
 
@@ -28,6 +29,6 @@ const mapHeroesListResponseToHeroesList = (response: HeroesListAPIResponse) =>
   );
 
 export const getHeroesList = () =>
-  get<HeroesListAPIResponse>("http://localhost:3000/heroes").then(
+  get<HeroesListAPIResponse>(`${backendUrl}/heroes`).then(
     mapHeroesListResponseToHeroesList
   );

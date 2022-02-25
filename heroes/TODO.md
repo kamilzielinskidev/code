@@ -2,9 +2,15 @@
   - [x] loading
   - [x] error
   - [x] data
-- [ ] heroes list styling
-  - [ ] general
-  - [ ] loading
-  - [ ] error
-  - [ ] data
-- [ ] move url to env var
+- [x] heroes list styling
+  - [x] general
+  - [x] loading
+  - [x] error
+  - [x] data
+- [x] move url to env var
+- [ ] heroes list load more button
+- [ ] heroes list desktop view
+- [ ] add hero view
+- [ ] hero view
+- [ ] routing
+- [ ] use responseState
