@@ -1,0 +1,15 @@
+{
+  "name": "esbuild-test",
+  "version": "1.0.0",
+  "scripts": {
+    "build-test": "ts-node app.ts",
+    "test-with-esbuild": "jest --config jestWithEsbuild.config.ts",
+    "test-clear": "jest --config clearJest.config.ts"
+  },
+  "dependencies": {
+    "@types/jest": "^27.4.1",
+    "esbuild-jest": "^0.5.0",
+    "jest": "^27.5.1",
+    "ts-node": "^10.7.0"
+  }
+}
