@@ -1,0 +1,10 @@
+- [ ] init page
+- [ ] create room page
+- [ ] join room page
+- [ ] create room API
+- [ ] room page
+- [ ] create new voting API
+- [ ] close voting API
+- [ ] survey page
+- [ ] survey submiting API
+- [ ] stats page
