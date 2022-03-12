@@ -1,15 +1,17 @@
 import { createTheme } from "@mui/material/styles";
 
+const PRIMARY = "#FFE12C";
+
 const theme = createTheme({
   palette: {
+    mode: "dark",
     primary: {
-      main: "#ffe12c",
+      main: PRIMARY,
     },
   },
   components: {
     MuiButton: {
-      defaultProps: { size: "large" },
-      styleOverrides: { root: { width: "16rem" } },
+      defaultProps: { size: "large", fullWidth: true },
     },
   },
 });
