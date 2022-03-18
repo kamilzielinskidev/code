@@ -7,7 +7,7 @@ export const Input: FC<TextFieldProps> = (props) => (
       ".MuiOutlinedInput-notchedOutline": {
         border: "1px solid rgba(255, 225, 44, 0.5)",
       },
-      "&:hover .MuiOutlinedInput-notchedOutline": {
+      "&&:hover .MuiOutlinedInput-notchedOutline": {
         border: "1px solid #FFE12C",
       },
       ".MuiInputLabel-formControl": {

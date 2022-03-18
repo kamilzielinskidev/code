@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 import { Button } from "@mui/material";
 
 import { HeaderWithBack } from "../components/HeaderWithBack";
@@ -9,9 +11,11 @@ const Join: NextPage = () => (
     <HeaderWithBack title="join a room:" />
     <div>
       <Input label="Room name" />
-      <Button className="mt-4" fullWidth variant="contained">
-        Join
-      </Button>
+      <Link href="/room" passHref>
+        <Button className="mt-4" variant="contained">
+          Join
+        </Button>
+      </Link>
     </div>
   </div>
 );

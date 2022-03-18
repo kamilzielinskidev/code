@@ -1,4 +1,5 @@
 import { Button } from "@mui/material";
+import Link from "next/link";
 
 import { Input } from "../components/Input";
 
@@ -10,9 +11,11 @@ const Create: NextPage = () => {
       <HeaderWithBack title="create a room:" />
       <div>
         <Input label="Room name" />
-        <Button className="mt-4" fullWidth variant="contained">
-          Create
-        </Button>
+        <Link href="/room" passHref>
+          <Button className="mt-4" variant="contained">
+            Create
+          </Button>
+        </Link>
       </div>
     </div>
   );

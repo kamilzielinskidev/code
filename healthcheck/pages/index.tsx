@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { BsArrowRightSquare, BsBoxArrowUp, BsPlusSquare } from "react-icons/bs";
+import { BsArrowRightSquare, BsPlusSquare } from "react-icons/bs";
 
 import { Button } from "@mui/material";
 
