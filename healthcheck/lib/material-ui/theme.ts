@@ -13,6 +13,7 @@ const theme = createTheme({
     MuiButton: {
       defaultProps: { size: "large", fullWidth: true },
     },
+    MuiFormControlLabel: { styleOverrides: { label: { display: "none" } } },
   },
 });
 

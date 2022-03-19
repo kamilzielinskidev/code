@@ -1,6 +1,9 @@
 :root {
   --background: #162b39;
   --text: #fcfcfc;
-  --primary: #ffe12c;
+  --primary: hsl(51, 100%, 59%);
   --primary-contrast: #162b39;
+  --success: hsl(96, 100%, 59%);
+  --warning: hsl(36, 100%, 59%);
+  --error: hsl(6, 100%, 59%);
 }
