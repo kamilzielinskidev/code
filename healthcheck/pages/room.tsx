@@ -18,9 +18,11 @@ const Room: NextPage = () => (
     <Button className="mt-4" variant="contained" disabled>
       Join voting
     </Button>
-    <Button className="mt-4" variant="contained">
-      Check history
-    </Button>
+    <Link href="/stats" passHref>
+      <Button className="mt-4" variant="contained">
+        Check stats
+      </Button>
+    </Link>
   </div>
 );
 

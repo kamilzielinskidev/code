@@ -1,3 +1,4 @@
+// TODO: move this to domain
 export type Category = {
   name: string;
   description: string;

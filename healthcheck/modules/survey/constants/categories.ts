@@ -1,5 +1,6 @@
 import { Category } from "../models/category";
 
+// TODO: move this to domain
 export const categories = <Category[]>[
   {
     name: "Delivering Value",
