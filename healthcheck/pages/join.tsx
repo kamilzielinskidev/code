@@ -2,8 +2,8 @@ import Link from "next/link";
 
 import { Button } from "@mui/material";
 
-import { HeaderWithBack } from "../components/HeaderWithBack";
-import { Input } from "../components/Input";
+import { HeaderWithBack } from "../common/components/HeaderWithBack";
+import { Input } from "../common/components/Input";
 
 import type { NextPage } from "next";
 const Join: NextPage = () => (

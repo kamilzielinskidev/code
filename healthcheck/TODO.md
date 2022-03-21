@@ -1,4 +1,5 @@
 - [ ] init page
+  - [ ] join last room
 - [ ] create room page
 - [ ] join room page
 - [ ] create room API
