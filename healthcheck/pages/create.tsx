@@ -1,23 +1,23 @@
-import Link from "next/link";
+import { LinearProgress, Paper } from "@mui/material";
 
-import { Button } from "@mui/material";
-
-import { HeaderWithBack } from "../common/components/HeaderWithBack";
-import { Input } from "../common/components/Input";
+import { CreateARoomForm } from "../modules/room-connection/components/CreateARoomForm";
+import { useCreateARoomState } from "../modules/room-connection/lib/useCreateARoomState";
 
 import type { NextPage } from "next";
+import { HeaderWithBack } from "../common/components/HeaderWithBack";
 const Create: NextPage = () => {
+  const { isLoading } = useCreateARoomState();
+
   return (
-    <div>
-      <HeaderWithBack title="create a room:" />
-      <div>
-        <Input label="Room name" />
-        <Link href="/room" passHref>
-          <Button className="mt-4" variant="contained">
-            Create
-          </Button>
-        </Link>
-      </div>
+    <div className="py-4">
+      <HeaderWithBack>create a room:</HeaderWithBack>
+      {isLoading ? (
+        <LinearProgress />
+      ) : (
+        <Paper elevation={3} className="p-4 mt-4">
+          <CreateARoomForm />
+        </Paper>
+      )}
     </div>
   );
 };

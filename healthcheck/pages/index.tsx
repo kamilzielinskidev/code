@@ -5,7 +5,7 @@ import { BsArrowRightSquare, BsPlusSquare } from "react-icons/bs";
 import { O } from "@mobily/ts-belt";
 import { Button, Paper, Typography } from "@mui/material";
 
-import { UsernameInput } from "../modules/auth/components/UsernameInput";
+import { UsernameInput } from "../modules/auth/lib/components/UsernameInput";
 import { useAuthState } from "../modules/auth/lib/useAuthState";
 import { useGetUserFromLocalStorage } from "../modules/auth/lib/useGetUserFromLocalStorage";
 

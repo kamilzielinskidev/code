@@ -8,7 +8,7 @@ import { Input } from "../common/components/Input";
 import type { NextPage } from "next";
 const Join: NextPage = () => (
   <div>
-    <HeaderWithBack title="join a room:" />
+    <HeaderWithBack>join a room:</HeaderWithBack>
     <div>
       <Input label="Room name" />
       <Link href="/room" passHref>

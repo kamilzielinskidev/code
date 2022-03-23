@@ -6,12 +6,13 @@ import Head from "next/head";
 import * as React from "react";
 
 import { CacheProvider, EmotionCache } from "@emotion/react";
-import { Container } from "@mui/material";
+import { Container, Snackbar } from "@mui/material";
 import CssBaseline from "@mui/material/CssBaseline";
 import { ThemeProvider } from "@mui/material/styles";
 
 import createEmotionCache from "../lib/material-ui/createEmotionCache";
 import theme from "../lib/material-ui/theme";
+import { AppAlert } from "../modules/alert/components/AppAlert";
 
 const clientSideEmotionCache = createEmotionCache();
 
@@ -21,6 +22,7 @@ interface MyAppProps extends AppProps {
 
 export default function MyApp(props: MyAppProps) {
   const { Component, emotionCache = clientSideEmotionCache, pageProps } = props;
+
   return (
     <CacheProvider value={emotionCache}>
       <Head>
@@ -31,6 +33,7 @@ export default function MyApp(props: MyAppProps) {
         <Container maxWidth="sm">
           <Component {...pageProps} />
         </Container>
+        <AppAlert />
       </ThemeProvider>
     </CacheProvider>
   );

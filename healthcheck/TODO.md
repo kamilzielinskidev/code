@@ -1,11 +1,14 @@
-- [ ] init page
-  - [ ] join last room
-- [ ] create room page
+- [x] init page
+---
+- [x] create room page
+---
 - [ ] join room page
-- [ ] create room API
+---
 - [ ] room page
+- [ ] survey page
+- [ ] stats page
+- [ ] create room API
 - [ ] create new voting API
 - [ ] close voting API
-- [ ] survey page
 - [ ] survey submiting API
-- [ ] stats page
+- [ ] init page join last room

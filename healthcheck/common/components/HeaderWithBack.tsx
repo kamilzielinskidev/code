@@ -2,9 +2,9 @@ import { useRouter } from "next/router";
 import { FC } from "react";
 import { BsBoxArrowInLeft } from "react-icons/bs";
 
-import { IconButton } from "@mui/material";
+import { IconButton, Typography } from "@mui/material";
 
-export const HeaderWithBack: FC<{ title: string }> = ({ title }) => {
+export const HeaderWithBack: FC = ({ children }) => {
   const router = useRouter();
 
   return (
@@ -12,7 +12,7 @@ export const HeaderWithBack: FC<{ title: string }> = ({ title }) => {
       <IconButton aria-label="delete" onClick={router.back}>
         <BsBoxArrowInLeft />
       </IconButton>
-      <h1 className="text-text">{title}</h1>
+      <Typography variant="h4">{children}</Typography>
     </div>
   );
 };

@@ -2,10 +2,10 @@ import { FC } from "react";
 
 import { D, O, pipe } from "@mobily/ts-belt";
 
-import { Input } from "../../../common/components/Input";
-import { useAuthState } from "../lib/useAuthState";
-import { useUserInLocalStorage } from "../lib/useUserInLocalStorage";
-import { mapTextToUser } from "../service";
+import { Input } from "../../../../common/components/Input";
+import { mapTextToUser } from "../../service";
+import { useAuthState } from "../useAuthState";
+import { useUserInLocalStorage } from "../useUserInLocalStorage";
 
 export const UsernameInput: FC = () => {
   const { user, setUser } = useAuthState();
