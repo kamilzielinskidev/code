@@ -4,8 +4,10 @@ import "../styles/global.css";
 import { AppProps } from "next/app";
 import Head from "next/head";
 import * as React from "react";
+import { useReadLocalStorage } from "usehooks-ts";
 
 import { CacheProvider, EmotionCache } from "@emotion/react";
+import { O } from "@mobily/ts-belt";
 import { Container, Snackbar } from "@mui/material";
 import CssBaseline from "@mui/material/CssBaseline";
 import { ThemeProvider } from "@mui/material/styles";
@@ -13,6 +15,8 @@ import { ThemeProvider } from "@mui/material/styles";
 import createEmotionCache from "../lib/material-ui/createEmotionCache";
 import theme from "../lib/material-ui/theme";
 import { AppAlert } from "../modules/alert/components/AppAlert";
+import { User } from "../modules/auth/domain/user";
+import { useAuthState } from "../modules/auth/lib/useAuthState";
 
 const clientSideEmotionCache = createEmotionCache();
 
@@ -22,6 +26,10 @@ interface MyAppProps extends AppProps {
 
 export default function MyApp(props: MyAppProps) {
   const { Component, emotionCache = clientSideEmotionCache, pageProps } = props;
+  const localStorageUser = useReadLocalStorage<User>("user");
+  const { setUser } = useAuthState();
+
+  React.useEffect(() => setUser(O.fromNullable(localStorageUser)), []);
 
   return (
     <CacheProvider value={emotionCache}>

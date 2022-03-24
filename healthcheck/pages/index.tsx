@@ -1,26 +1,38 @@
 import Link from "next/link";
 import React from "react";
 import { BsArrowRightSquare, BsPlusSquare } from "react-icons/bs";
+import { useLocalStorage } from "usehooks-ts";
 
-import { O } from "@mobily/ts-belt";
+import { F, O, pipe } from "@mobily/ts-belt";
 import { Button, Paper, Typography } from "@mui/material";
 
-import { UsernameInput } from "../modules/auth/lib/components/UsernameInput";
+import { Input } from "../common/components/Input";
+import { User } from "../modules/auth/domain/user";
 import { useAuthState } from "../modules/auth/lib/useAuthState";
-import { useGetUserFromLocalStorage } from "../modules/auth/lib/useGetUserFromLocalStorage";
+import { mapTextToUser, mapUserToText } from "../modules/auth/service";
 
 import type { NextPage } from "next";
 const Home: NextPage = () => {
-  const { user } = useAuthState();
-
-  useGetUserFromLocalStorage();
+  const { user, setUser } = useAuthState();
+  const [_, setUserInLocalStorage] = useLocalStorage<User | null>("user", null);
 
   return (
     <div>
       <Typography variant="overline">healthcheck</Typography>
       <Typography variant="h3">Handling teams health status</Typography>
       <Paper elevation={3} className="p-4 mt-4">
-        <UsernameInput />
+        <Input
+          label="Username"
+          value={mapUserToText(user)}
+          onChange={(v) =>
+            pipe(
+              v.target.value,
+              mapTextToUser,
+              F.tap(setUser),
+              F.tap((user) => setUserInLocalStorage(() => user))
+            )
+          }
+        />
         <Link href="/create" passHref>
           <Button
             className="mt-12"

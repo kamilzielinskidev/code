@@ -2,10 +2,11 @@
 ---
 - [x] create room page
 ---
-- [ ] join room page
+- [x] join room page
 ---
 - [ ] room page
 - [ ] survey page
+---
 - [ ] stats page
 - [ ] create room API
 - [ ] create new voting API
