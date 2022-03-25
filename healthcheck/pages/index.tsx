@@ -16,6 +16,18 @@ const Home: NextPage = () => {
   const { user, setUser } = useAuthState();
   const [_, setUserInLocalStorage] = useLocalStorage<User | null>("user", null);
 
+  const handleUserChange = (name: string) =>
+    pipe(
+      name,
+      mapTextToUser,
+      F.tap(setUser),
+      F.tap((user) =>
+        O.isNone(user)
+          ? setUserInLocalStorage(() => null)
+          : setUserInLocalStorage(() => user)
+      )
+    );
+
   return (
     <div>
       <Typography variant="overline">healthcheck</Typography>
@@ -24,14 +36,7 @@ const Home: NextPage = () => {
         <Input
           label="Username"
           value={mapUserToText(user)}
-          onChange={(v) =>
-            pipe(
-              v.target.value,
-              mapTextToUser,
-              F.tap(setUser),
-              F.tap((user) => setUserInLocalStorage(() => user))
-            )
-          }
+          onChange={(value) => handleUserChange(value.target.value)}
         />
         <Link href="/create" passHref>
           <Button

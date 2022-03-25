@@ -18,7 +18,7 @@ const Create: NextPage = () => {
   const { successAlert, errorAlert } = useAlert();
   const { push } = useRouter();
 
-  const pushToRoom = () => push("/room");
+  const pushToRoom = () => push(`/room/${roomName}`);
 
   return (
     <div className="py-4">
