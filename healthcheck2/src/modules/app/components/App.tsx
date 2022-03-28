@@ -1,8 +1,20 @@
-import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 
-function App() {
+import { FC, useEffect } from 'react';
+
+import { O } from '@mobily/ts-belt';
+
+import { initialUserLoad } from '../helpers';
+import logo from './logo.svg';
+
+export const App: FC = () => {
+  useEffect(
+    initialUserLoad(
+      () => O.None,
+      () => {}
+    ),
+    []
+  );
   return (
     <div className="App">
       <header className="App-header">
@@ -21,6 +33,4 @@ function App() {
       </header>
     </div>
   );
-}
-
-export default App;
+};
