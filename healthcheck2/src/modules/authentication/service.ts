@@ -1,11 +1,11 @@
 import { O, pipe } from '@mobily/ts-belt';
 
-type User = { name: string };
+import { AuthenticationUser } from './domain';
 
 export const initialUserLoad =
   (
-    readUserFromBrowserFn: () => O.Option<User>,
-    saveToAppStateFn: (user: User) => void
+    readUserFromBrowserFn: () => AuthenticationUser,
+    saveToAppStateFn: (user: AuthenticationUser) => void
   ) =>
   () => {
     pipe(readUserFromBrowserFn(), O.tap(saveToAppStateFn));

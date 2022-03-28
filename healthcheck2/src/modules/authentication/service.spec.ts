@@ -1,6 +1,6 @@
 import { O } from '@mobily/ts-belt';
 
-import { initialUserLoad } from './helpers';
+import { initialUserLoad } from './service';
 
 it("should read user from browser storage and save it to the app state if there is one", () => {
   const EXAMPLE_USER = { name: "kamil" };

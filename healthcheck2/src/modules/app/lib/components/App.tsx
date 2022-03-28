@@ -1,20 +1,13 @@
 import './App.css';
 
-import { FC, useEffect } from 'react';
+import { FC } from 'react';
 
-import { O } from '@mobily/ts-belt';
-
-import { initialUserLoad } from '../helpers';
+import { useInitialUserLoad } from '../../../authentication/lib/hooks/useInitialUserLoad';
 import logo from './logo.svg';
 
 export const App: FC = () => {
-  useEffect(
-    initialUserLoad(
-      () => O.None,
-      () => {}
-    ),
-    []
-  );
+  useInitialUserLoad();
+
   return (
     <div className="App">
       <header className="App-header">
