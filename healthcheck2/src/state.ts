@@ -1,0 +1,12 @@
+import create from 'zustand';
+
+import { O } from '@mobily/ts-belt';
+
+import { User } from './domain/User';
+
+export type State = { user: O.Option<User>; setUser: (user: O.Option<User>) => void };
+
+export const useAppState = create<State>((set) => ({
+    user: O.None,
+    setUser: (user) => set({ user }),
+}));
