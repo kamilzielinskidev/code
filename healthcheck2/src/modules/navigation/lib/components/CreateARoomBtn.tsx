@@ -6,17 +6,17 @@ import { Button } from '@mui/material';
 
 import { useAuthenticationState } from '../../../authentication/lib/state/useAuthenticationState';
 
-export const JoinRoomBtn: FC = () => {
+export const CreateRoomBtn: FC = () => {
     const { user } = useAuthenticationState();
     const navigate = useNavigate();
 
     const isNoUser = O.isNone(user);
 
-    const navigateToJoinPage = () => navigate("join");
+    const navigateToJoinPage = () => navigate("create");
 
     return (
-        <Button variant="contained" disabled={isNoUser} onClick={navigateToJoinPage}>
-            Join
+        <Button variant="outlined" disabled={isNoUser} onClick={navigateToJoinPage}>
+            Create
         </Button>
     );
 };

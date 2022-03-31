@@ -8,13 +8,13 @@ it("should create User DTO from name string", () => {
 });
 
 describe('Given user with name "kamil"', () => {
+    const testUser = User({ name: "kamil" });
+
     it('should map the user to new one with "kamilkamil"', () => {
-        const testUser = User({ name: "kamil" });
         expect(map((user) => ({ name: `${user.name}${user.name}` }))(testUser)).toEqual(User({ name: "kamilkamil" }));
     });
 
     it('should get name prop and return "kamil"', () => {
-        const testUser = User({ name: "kamil" });
         expect(get("name")(testUser)).toBe("kamil");
     });
 });
@@ -22,24 +22,24 @@ describe('Given user with name "kamil"', () => {
 describe("In localStorage", () => {
     afterEach(() => localStorage.clear());
 
+    const getLocalStorageItemUser = () => localStorage.getItem("user");
+
     it("should save user to localStorage", () => {
         toLocalStorage(User({ name: "kamil" }));
-        const localStorageUser = localStorage.getItem("user");
-        expect(localStorageUser).not.toBeNull();
-        expect(JSON.parse(localStorageUser!)).toEqual(User({ name: "kamil" }));
+        expect(getLocalStorageItemUser()).not.toBeNull();
+        expect(JSON.parse(getLocalStorageItemUser()!)).toEqual(User({ name: "kamil" }));
     });
 
     describe('With user { name: "kamil" }', () => {
+        beforeEach(() => localStorage.setItem("user", JSON.stringify({ name: "kamil" })));
+
         it("should return Some User instance", () => {
-            localStorage.setItem("user", JSON.stringify({ name: "kamil" }));
             expect(fromLocalStorage()).toEqual(O.Some(User({ name: "kamil" })));
         });
 
         it("should remove user from local storage", () => {
-            localStorage.setItem("user", JSON.stringify({ name: "kamil" }));
             clearLocalStorage();
-            const localStorageUser = localStorage.getItem("user");
-            expect(localStorageUser).toBeNull();
+            expect(getLocalStorageItemUser()).toBeNull();
         });
     });
 
