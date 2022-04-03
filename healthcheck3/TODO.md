@@ -1,0 +1,3 @@
+- [x] database structure
+- [ ] database connection
+  - [x] getRoom route
