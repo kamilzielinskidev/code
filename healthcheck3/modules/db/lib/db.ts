@@ -1,4 +1,4 @@
-import { Collection, Document, Filter, MongoClient, ObjectId, WithId } from 'mongodb';
+import { Collection, Filter, FindOptions, MongoClient, ObjectId } from 'mongodb';
 
 export const connectCollection = <A>(name: string) => {
   const dbUrl = process.env.DB_URL;
@@ -13,6 +13,11 @@ export const connectCollection = <A>(name: string) => {
       throw new Error("NO_CONNECTION");
     });
 };
+
+export const findAll =
+  <A, B extends Filter<A>>(query: B, options?: FindOptions) =>
+  (collection: Collection<A>) =>
+    collection.find<A>(query, options).toArray();
 
 export const findOne =
   <A, B extends Filter<A>>(query: B) =>

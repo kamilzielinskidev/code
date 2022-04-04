@@ -5,7 +5,7 @@ import { INTERNAL_ERROR } from '../../../common/api/lib/INTERNAL_ERROR';
 import { NOT_FOUND } from '../../../common/api/lib/NOT_FOUND';
 import { getById } from '../../../modules/db/roomsService';
 
-export default async function gatewaysHandler(req: NextApiRequest, res: NextApiResponse) {
+const roomsIdHandler = (req: NextApiRequest, res: NextApiResponse) => {
   if (req.method !== "GET") {
     return BAD_REQUEST(res);
   }
@@ -19,9 +19,12 @@ export default async function gatewaysHandler(req: NextApiRequest, res: NextApiR
   getById(id)
     .then((room) => {
       if (!room) return NOT_FOUND(res, "NO_ROOM");
+
       return res.status(200).json(room);
     })
     .catch((err) => {
       return INTERNAL_ERROR(res, err.message);
     });
-}
+};
+
+export default roomsIdHandler;

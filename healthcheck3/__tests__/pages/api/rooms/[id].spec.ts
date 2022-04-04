@@ -1,6 +1,6 @@
 describe("For get method", () => {
   describe("With no room with given id in database", () => {
-    it.todo("should return status 404 response");
+    it.todo("should response with status 404 and message 'NO_ROOM'");
   });
 
   describe("With room with given id in database", () => {

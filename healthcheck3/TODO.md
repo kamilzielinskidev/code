@@ -1,3 +1,8 @@
 - [x] database structure
 - [ ] database connection
-  - [x] getRoom route
+  - [x] get a room route
+  - [x] get surveys for a room
+  - [ ] open survey
+  - [ ] close survey
+  - [ ] submit survey
+  - [ ] create a room
