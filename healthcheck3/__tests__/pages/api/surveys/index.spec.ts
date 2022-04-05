@@ -21,21 +21,27 @@ describe("For post method", () => {
     });
 
     describe("There is roomId property", () => {
-      describe("There is already survey open for the room", () => {
-        it.todo("should response with status 403 and message 'FORBIDDEN'");
+      describe("There is no room with given roomId", () => {
+        it.todo("should response with status 404 and message 'NO_ROOM'");
       });
 
-      describe("There is no survey open for the room", () => {
-        describe("When there is no survey created yet", () => {
-          it.todo("should create a survey with iteration 0 and isOpen true");
-          it.todo("should set the room survey_iteration to 0 and currentSurveyId to the survey's id");
+      describe("There is a room with given roomId", () => {
+        describe("There is already survey open for the room", () => {
+          it.todo("should response with status 403 and message 'FORBIDDEN'");
         });
 
-        describe("When there is/are survey/s created already", () => {
-          it.todo("should create a survey with iteration +1 to the current newest survey and isOpen true");
-          it.todo(
-            "should set the room survey_iteration to the survey's iteration and currentSurveyId to the survey's id"
-          );
+        describe("There is no survey open for the room", () => {
+          describe("When there is no survey created yet", () => {
+            it.todo("should create a survey with iteration 0 and isOpen true");
+            it.todo("should set the room survey_iteration to 0 and currentSurveyId to the survey's id");
+          });
+
+          describe("When there is/are survey/s created already", () => {
+            it.todo("should create a survey with iteration +1 to the current newest survey and isOpen true");
+            it.todo(
+              "should set the room survey_iteration to the survey's iteration and currentSurveyId to the survey's id"
+            );
+          });
         });
       });
     });

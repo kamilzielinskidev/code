@@ -1,4 +1,4 @@
-import { Collection, Filter, FindOptions, MongoClient, ObjectId } from 'mongodb';
+import { Collection, Filter, FindOptions, MongoClient, ObjectId, OptionalUnlessRequiredId } from 'mongodb';
 
 export const connectCollection = <A>(name: string) => {
   const dbUrl = process.env.DB_URL;
@@ -29,9 +29,14 @@ export const findOneById =
   (collection: Collection<A>) =>
     collection.findOne({ _id: new ObjectId(id) } as unknown as B);
 
-export const updateOne =
-  <A, B extends Filter<A>, C extends Partial<A>>(value: C, query: B) =>
+export const updateOneById =
+  <A>(value: Partial<A>, id: string) =>
   (collection: Collection<A>) =>
-    collection.updateOne(query, value).then((result) => {
+    collection.updateOne({ _id: new ObjectId(id) } as unknown as Filter<A>, { $set: value }).then((result) => {
       if (result.modifiedCount === 0) throw new Error("NOT_MODIFIED");
     });
+
+export const insertOne =
+  <A, B extends OptionalUnlessRequiredId<A>>(value: B) =>
+  (collection: Collection<A>) =>
+    collection.insertOne(value).then((result) => result.insertedId.toString());

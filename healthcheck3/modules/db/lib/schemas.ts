@@ -1,26 +1,21 @@
-import { Int32, ObjectId } from 'mongodb';
-
 export interface RoomsSchema {
-  _id: ObjectId;
   name: string;
   survey_isOpen: boolean;
-  survey_iteration: null | Int32;
+  survey_iteration: null | number;
 }
 
 export interface SurveysSchema {
-  _id: ObjectId;
   roomId: string;
-  iteration: Int32;
+  iteration: number;
   isOpen: boolean;
-  responses_answers: { FUN: Int32; HEALTH_OF_CODEBASE: Int32 }[];
+  responses_answers: { FUN: number; HEALTH_OF_CODEBASE: number }[];
 }
 
 export interface ResponsesSchema {
-  _id: ObjectId;
   username: string;
   surveyId: string;
   answers: {
-    FUN: Int32;
-    HEALTH_OF_CODEBASE: Int32;
+    FUN: number;
+    HEALTH_OF_CODEBASE: number;
   };
 }
