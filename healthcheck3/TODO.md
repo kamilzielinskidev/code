@@ -2,9 +2,9 @@
 - [ ] database connection
   - [x] get a room route
   - [x] get surveys for a room
-  - [ ] open survey
+  - [x] open survey
     - [x] for no previous surveys room
-    - [ ] for already opened surveys room
+    - [x] for already opened surveys room
   - [ ] close survey
   - [ ] submit survey
   - [ ] create a room

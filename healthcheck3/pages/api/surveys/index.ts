@@ -12,6 +12,7 @@ const get = (req: NextApiRequest, res: NextApiResponse) => {
     return BAD_REQUEST(res);
   }
 
+  // TODO: put sorting it in parameter
   Surveys.getByRoomIdOrdered(req.query.roomid)
     .then((surveys) => {
       res.status(200).json(surveys);
@@ -30,13 +31,17 @@ const post = (req: NextApiRequest, res: NextApiResponse) => {
     .then((room) => {
       if (!room) return NOT_FOUND(res, "NO_ROOM");
       if (room.survey_isOpen) return FORBIDDEN(res, "FORBIDDEN");
-      if (room.survey_iteration !== null) return FORBIDDEN(res, "FORBIDDEN FOR NOW");
+
+      const newSurvey =
+        room.survey_iteration === null ? { iteration: 0, roomId } : { iteration: room.survey_iteration + 1, roomId };
+
+      const editedRoom =
+        room.survey_iteration === null
+          ? { survey_isOpen: true, survey_iteration: 0 }
+          : { survey_isOpen: true, survey_iteration: room.survey_iteration + 1 };
 
       // TODO: bulk/batch it
-      return Promise.all([
-        Surveys.createSurvey({ iteration: 0, roomId }),
-        Rooms.updateById(roomId, { survey_isOpen: true, survey_iteration: 0 }),
-      ])
+      return Promise.all([Surveys.createSurvey(newSurvey), Rooms.updateById(roomId, editedRoom)])
         .then(([surveyId]) => Surveys.getById(surveyId))
         .then((survey) => res.status(200).json(survey));
     })
