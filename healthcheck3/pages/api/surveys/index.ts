@@ -33,18 +33,22 @@ const post = (req: NextApiRequest, res: NextApiResponse) => {
       if (room.survey_isOpen) return FORBIDDEN(res, "FORBIDDEN");
 
       const newSurvey =
-        room.survey_iteration === null ? { iteration: 0, roomId } : { iteration: room.survey_iteration + 1, roomId };
+        // TODO: handle this assumption that there will be always iteration if there's a survey
+        room.surveyId === null ? { iteration: 0, roomId } : { iteration: room.survey_iteration! + 1, roomId };
 
-      const editedRoom =
-        room.survey_iteration === null
-          ? { survey_isOpen: true, survey_iteration: 0 }
-          : { survey_isOpen: true, survey_iteration: room.survey_iteration + 1 };
-
-      // TODO: bulk/batch it
-      return Promise.all([Surveys.createSurvey(newSurvey), Rooms.updateById(roomId, editedRoom)])
-        .then(([surveyId]) => Surveys.getById(surveyId))
+      // TODO: Decouple survey from room totally, GET surveys?index=last
+      Surveys.createSurvey(newSurvey)
+        .then((surveyId) => {
+          const editedRoom =
+            room.surveyId === null
+              ? { survey_isOpen: true, survey_iteration: 0, surveyId }
+              : { survey_isOpen: true, survey_iteration: room.survey_iteration! + 1, surveyId };
+          return Rooms.updateById(roomId, editedRoom).then(() => surveyId);
+        })
+        .then((surveyId) => Surveys.getById(surveyId))
         .then((survey) => res.status(200).json(survey));
     })
+
     .catch((err) => {
       return INTERNAL_ERROR(res, err.message);
     });

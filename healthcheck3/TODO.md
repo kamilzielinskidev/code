@@ -5,6 +5,6 @@
   - [x] open survey
     - [x] for no previous surveys room
     - [x] for already opened surveys room
-  - [ ] close survey
-  - [ ] submit survey
+  - [x] close survey
   - [ ] create a room
+  - [ ] submit survey

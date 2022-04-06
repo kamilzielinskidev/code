@@ -33,13 +33,15 @@ describe("For post method", () => {
         describe("There is no survey open for the room", () => {
           describe("When there is no survey created yet", () => {
             it.todo("should create a survey with iteration 0 and isOpen true");
-            it.todo("should set the room survey_iteration to 0 and survey_isOpen to true");
           });
 
           describe("When there is/are survey/s created already", () => {
             it.todo("should create a survey with iteration +1 to the current newest survey and isOpen true");
-            it.todo("should set the room survey_iteration to the survey's iteration and survey_isOpen to true");
           });
+
+          it.todo(
+            "should set the room survey_iteration to the survey's iteration and survey_isOpen to true and surveyId to survey's id"
+          );
         });
       });
     });

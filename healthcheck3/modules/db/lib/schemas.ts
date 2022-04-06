@@ -1,5 +1,7 @@
 export interface RoomsSchema {
   name: string;
+  // TODO: decouple room from survey totally
+  surveyId: null | string;
   survey_isOpen: boolean;
   survey_iteration: null | number;
 }
