@@ -1,33 +1,33 @@
 import '../styles/globals.css';
 
-import * as Ra from 'ramda';
-import { ChangeEvent, useEffect, useState } from 'react';
+import { useEffect } from 'react';
+import { QueryClient, QueryClientProvider } from 'react-query';
+import { useReadLocalStorage } from 'usehooks-ts';
 
 import { O, pipe } from '@mobily/ts-belt';
+import { Container } from '@mui/material';
+
+import { User } from '../common/domain';
+import { authState } from '../modules/auth/lib/state';
+import * as Auth from '../modules/auth/service';
+
+const queryClient = new QueryClient();
 
 import type { AppProps } from "next/app";
-
 function MyApp({ Component, pageProps }: AppProps) {
-  const [username, setUsername] = useState("");
+  const { setUser, user } = authState();
+  const localStorageUser = useReadLocalStorage<User | null>("user");
 
   useEffect(() => {
-    pipe(localStorage.getItem("user"), O.fromNullable, O.tap(setUsername));
+    pipe(localStorageUser, O.fromNullable, O.map(Auth.of), O.tap(setUser));
   }, []);
 
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) =>
-    pipe(
-      e,
-      Ra.path<string>(["target", "value"]),
-      Ra.tap((v) => setUsername(v!)),
-      Ra.tap((v) => localStorage.setItem("user", v!))
-    );
-
   return (
-    <>
-      {username}
-      <input value={username} onChange={handleChange} />
-      {/* <Component {...pageProps} /> */}
-    </>
+    <QueryClientProvider client={queryClient}>
+      <Container maxWidth="xs">
+        <Component {...pageProps} />
+      </Container>
+    </QueryClientProvider>
   );
 }
 
