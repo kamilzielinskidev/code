@@ -1,5 +1,5 @@
 - [x] database structure
-- [ ] database connection
+- [x] database connection
   - [x] get a room route
   - [x] get surveys for a room
   - [x] open survey
@@ -8,3 +8,7 @@
   - [x] close survey
   - [x] create a room
   - [x] submit survey
+- [ ] home page
+- [ ] room page
+- [ ] room stats
+- [ ] survey response

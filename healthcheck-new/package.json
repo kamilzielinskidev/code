@@ -10,7 +10,10 @@
     "test": "jest --watch"
   },
   "dependencies": {
+    "@emotion/react": "^11.9.0",
+    "@emotion/styled": "^11.8.1",
     "@mobily/ts-belt": "^3.10.0",
+    "@mui/material": "^5.6.0",
     "@types/ramda": "^0.28.7",
     "axios": "^0.26.1",
     "mongodb": "^4.4.1",
@@ -18,7 +21,10 @@
     "ramda": "^0.28.0",
     "ramda-adjunct": "^3.0.0",
     "react": "18.0.0",
-    "react-dom": "18.0.0"
+    "react-dom": "18.0.0",
+    "react-query": "^3.34.19",
+    "usehooks-ts": "^2.4.2",
+    "zustand": "^3.7.2"
   },
   "devDependencies": {
     "@types/jest": "^27.4.1",
