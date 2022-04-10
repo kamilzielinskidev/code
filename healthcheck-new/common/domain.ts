@@ -1,3 +1,7 @@
+export interface User {
+  name: string;
+}
+
 export interface Answers {
   FUN: 0 | 1 | 2;
   HEALTH_OF_CODEBASE: 0 | 1 | 2;
