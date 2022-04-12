@@ -12,8 +12,10 @@ import { Alert, Button, FormControlLabel, Grid, Radio, Snackbar, TextField, Typo
 import { User } from '../common/domain';
 import { changeValue } from '../common/reactApi';
 import { authState } from '../modules/auth/lib/state';
-import * as A from '../modules/auth/service';
+import * as Auth from '../modules/auth/service';
 import { RoomsSchema } from '../modules/db/lib/schemas';
+import { roomState } from '../modules/room/lib/state';
+import * as Room from '../modules/room/service';
 
 import type { NextPage } from "next";
 type Action = "join" | "create";
@@ -26,10 +28,12 @@ const Home: NextPage = () => {
   const { value: isSuccess, toggle: toggleIsSuccess } = useBoolean();
 
   const { user, setUser } = authState();
+  const { setRoom } = roomState();
   const router = useRouter();
 
   const [_, setLocalStorageUser] = useLocalStorage<User | null>("user", null);
 
+  // TODO: useQuery instead of useMutation
   const getRoom = useMutation<WithId<RoomsSchema>, string, string>(
     "getRoom",
     (roomId) =>
@@ -42,6 +46,7 @@ const Home: NextPage = () => {
     {
       onSuccess: (room) => {
         toggleIsSuccess();
+        pipe(room, (room) => Room.of({ name: room.name, id: room._id.toString() }), setRoom);
         router.push(`room/${room._id}`);
       },
       onError: toggleIsError,
@@ -73,7 +78,7 @@ const Home: NextPage = () => {
       pipe(
         user,
         O.fromNullable,
-        O.match(A.get("name"), () => "")
+        O.match(Auth.get("name"), () => "")
       ),
     [user]
   );
@@ -85,7 +90,7 @@ const Home: NextPage = () => {
       R.tapError(() => setUser(null)),
       R.tapError(() => setLocalStorageUser(null)),
       R.tap((username) => {
-        pipe(username, A.ofName, F.tap(setUser), F.tap(setLocalStorageUser));
+        pipe(username, Auth.ofName, F.tap(setUser), F.tap(setLocalStorageUser));
       })
     );
 
@@ -98,7 +103,7 @@ const Home: NextPage = () => {
 
   return (
     <>
-      <Grid container padding={"1rem 0"} direction="column" spacing={4}>
+      <Grid container padding="1rem 0" direction="column" spacing={4}>
         <Grid item>
           <Typography variant="h1" fontSize={"1.5rem"}>
             healthcheck
