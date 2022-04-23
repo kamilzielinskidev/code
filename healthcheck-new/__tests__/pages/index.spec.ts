@@ -42,14 +42,5 @@ describe("Go buttom", () => {
   });
   describe("When username is filled with non empty string and action form is valid", () => {
     it.todo("should be enabled");
-
-    describe("When clicked", () => {
-      describe("When there is backend response error", () => {
-        it.todo("should popup error notification");
-      });
-      describe("When there backend response ok", () => {
-        it.todo("should  navigate to the room page with roomid as param");
-      });
-    });
   });
 });

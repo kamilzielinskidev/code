@@ -31,12 +31,7 @@ describe("Stats button", () => {
 describe("Create a survey button when clicked", () => {
   it.todo("should send request for creating a survey");
 
-  describe("When backend response with error", () => {
-    it.todo("should popup notification about the error");
-  });
-
   describe("When backend response with ok", () => {
-    it.todo("should popup notification about ok");
     it.todo("should disable the button and enable join a survey button and close survey button");
   });
 });
