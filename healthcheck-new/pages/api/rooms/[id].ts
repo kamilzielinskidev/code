@@ -16,7 +16,7 @@ const roomsIdHandler = (req: NextApiRequest, res: NextApiResponse) => {
 
   const id = req.query.id;
 
-  getById(id)
+  return getById(id)
     .then((room) => {
       if (!room) return NOT_FOUND(res, "NO_ROOM");
 

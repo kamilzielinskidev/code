@@ -37,15 +37,11 @@ describe("Create a survey button when clicked", () => {
 });
 
 describe("Join a survey button is clicked", () => {
-  it.todo("should navigate to response page");
+  it.todo("should navigate to survey page with surveyid as param");
 });
 
 describe("Close a survey button is clicked", () => {
   it.todo("should send request for closing the survey");
-
-  describe("When backend response with error", () => {
-    it.todo("should popup notification about the error");
-  });
 
   describe("When backend response with ok", () => {
     it.todo("should popup notification about ok");

@@ -13,7 +13,7 @@ const get = (req: NextApiRequest, res: NextApiResponse) => {
   }
 
   // TODO: put sorting it in parameter
-  Surveys.getByRoomIdOrdered(req.query.roomid)
+  return Surveys.getByRoomIdOrdered(req.query.roomid)
     .then((surveys) => {
       res.status(200).json(surveys);
     })

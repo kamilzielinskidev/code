@@ -4,6 +4,7 @@ specifiers:
   '@emotion/react': ^11.9.0
   '@emotion/styled': ^11.8.1
   '@mobily/ts-belt': ^3.10.0
+  '@mui/icons-material': ^5.6.2
   '@mui/material': ^5.6.0
   '@types/jest': ^27.4.1
   '@types/node': 17.0.23
@@ -29,6 +30,7 @@ dependencies:
   '@emotion/react': 11.9.0_00a11a054056e3746b551a83b9229751
   '@emotion/styled': 11.8.1_24d67be66bb875d00e77a145b4bdc2ae
   '@mobily/ts-belt': 3.10.0
+  '@mui/icons-material': 5.6.2_c00cc9082dc0b2fab042e40bf027d4c0
   '@mui/material': 5.6.0_70fa32ac459e5c1cdea1741a31157dc6
   '@types/ramda': 0.28.8
   axios: 0.26.1
@@ -790,6 +792,23 @@ packages:
       react: 18.0.0
       react-dom: 18.0.0_react@18.0.0
       react-is: 17.0.2
+    dev: false
+
+  /@mui/icons-material/5.6.2_c00cc9082dc0b2fab042e40bf027d4c0:
+    resolution: {integrity: sha512-9QdI7axKuBAyaGz4mtdi7Uy1j73/thqFmEuxpJHxNC7O8ADEK1Da3t2veK2tgmsXsUlAHcAG63gg+GvWWeQNqQ==}
+    engines: {node: '>=12.0.0'}
+    peerDependencies:
+      '@mui/material': ^5.0.0
+      '@types/react': ^17.0.0 || ^18.0.0
+      react: ^17.0.0 || ^18.0.0
+    peerDependenciesMeta:
+      '@types/react':
+        optional: true
+    dependencies:
+      '@babel/runtime': 7.17.9
+      '@mui/material': 5.6.0_70fa32ac459e5c1cdea1741a31157dc6
+      '@types/react': 17.0.43
+      react: 18.0.0
     dev: false
 
   /@mui/material/5.6.0_70fa32ac459e5c1cdea1741a31157dc6:

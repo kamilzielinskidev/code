@@ -5,7 +5,7 @@ import { useCopyToClipboard } from 'usehooks-ts';
 import { Button, CircularProgress, Grid, Typography } from '@mui/material';
 
 import { authState } from '../../modules/auth/lib/state';
-import { useMutationCloseSurvey } from '../../modules/room/lib/hooks/useMutationCloseSurvey copy';
+import { useMutationCloseSurvey } from '../../modules/room/lib/hooks/useMutationCloseSurvey';
 import { useMutationCreateSurvey } from '../../modules/room/lib/hooks/useMutationCreateSurvey';
 import { useQueryRoom } from '../../modules/room/lib/hooks/useQueryRoom';
 
@@ -52,8 +52,8 @@ const Room: NextPage = () => {
           <Button variant="contained" disabled={room.survey_isOpen} onClick={() => createSurvey(room._id.toString())}>
             Create a new survey
           </Button>
-          <Button variant="contained" disabled={!room.survey_isOpen}>
-            Join the survey
+          <Button variant="contained" disabled={!room.survey_isOpen} onClick={() => push(`/survey/${room.surveyId}`)}>
+            Answer for the survey
           </Button>
           <Button variant="contained" disabled={!room.survey_isOpen} onClick={() => closeSurvey(room.surveyId!)}>
             Close the survey
