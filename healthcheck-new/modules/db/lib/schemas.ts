@@ -10,7 +10,19 @@ export interface SurveysSchema {
   roomId: string;
   iteration: number;
   isOpen: boolean;
-  responses_answers: { FUN: number; HEALTH_OF_CODEBASE: number }[];
+  responses_answers: {
+    FUN: number;
+    HEALTH_OF_CODEBASE: number;
+    DELIVERING_VALUE: number;
+    EASY_TO_RELEASE: number;
+    LEARNING: number;
+    MISSION: number;
+    PAWN_OR_PLAYERS: number;
+    SPEED: number;
+    SUITABLE_PROCESS: number;
+    SUPPORT: number;
+    TEAMWORK: number;
+  }[];
 }
 
 export interface ResponsesSchema {

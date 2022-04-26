@@ -5,7 +5,16 @@ import { useEffect, useState } from 'react';
 import { useMutation } from 'react-query';
 
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import BoltIcon from '@mui/icons-material/Bolt';
+import DiamondIcon from '@mui/icons-material/Diamond';
+import ExtensionIcon from '@mui/icons-material/Extension';
+import GroupAddIcon from '@mui/icons-material/GroupAdd';
 import HealingIcon from '@mui/icons-material/Healing';
+import MenuBookIcon from '@mui/icons-material/MenuBook';
+import RocketLaunchIcon from '@mui/icons-material/RocketLaunch';
+import SettingsIcon from '@mui/icons-material/Settings';
+import SupportAgentIcon from '@mui/icons-material/SupportAgent';
+import TrackChangesIcon from '@mui/icons-material/TrackChanges';
 import VideogameAssetIcon from '@mui/icons-material/VideogameAsset';
 import { Button, CircularProgress, Grid, IconButton, Rating, Typography } from '@mui/material';
 
@@ -13,18 +22,48 @@ import { authState } from '../../modules/auth/lib/state';
 import { ResponsesSchema } from '../../modules/db/lib/schemas';
 import { useQueryRoom } from '../../modules/room/lib/hooks/useQueryRoom';
 
-const CATEGORIES = ["FUN", "HEALTH_OF_CODEBASE"] as const;
+const CATEGORIES = [
+  "FUN",
+  "HEALTH_OF_CODEBASE",
+  "DELIVERING_VALUE",
+  "EASY_TO_RELEASE",
+  "LEARNING",
+  "MISSION",
+  "PAWN_OR_PLAYERS",
+  "SPEED",
+  "SUITABLE_PROCESS",
+  "SUPPORT",
+  "TEAMWORK",
+] as const;
 
 const categoryToIcon = {
   FUN: VideogameAssetIcon,
   HEALTH_OF_CODEBASE: HealingIcon,
+  DELIVERING_VALUE: DiamondIcon,
+  EASY_TO_RELEASE: RocketLaunchIcon,
+  LEARNING: MenuBookIcon,
+  MISSION: TrackChangesIcon,
+  PAWN_OR_PLAYERS: ExtensionIcon,
+  SPEED: BoltIcon,
+  SUITABLE_PROCESS: SettingsIcon,
+  SUPPORT: SupportAgentIcon,
+  TEAMWORK: GroupAddIcon,
 };
 
 const Survey: NextPage = () => {
   const { query, push, back } = useRouter();
   const { user } = authState();
-  const funRate = useState(1);
-  const healthOfCodebaseRate = useState(1);
+  const FUN_RATE = useState(1);
+  const HEALTH_OF_CODEBASE_RATE = useState(1);
+  const DELIVERING_VALUE_RATE = useState(1);
+  const EASY_TO_RELEASE_RATE = useState(1);
+  const LEARNING_RATE = useState(1);
+  const MISSION_RATE = useState(1);
+  const PAWN_OR_PLAYERS_RATE = useState(1);
+  const SPEED_RATE = useState(1);
+  const SUITABLE_PROCESS_RATE = useState(1);
+  const SUPPORT_RATE = useState(1);
+  const TEAMWORK_RATE = useState(1);
   const { data: room } = useQueryRoom(query.id as string);
 
   const { mutate: answer } = useMutation<ResponsesSchema>("response", () =>
@@ -33,8 +72,17 @@ const Survey: NextPage = () => {
         surveyId: query.id,
         username: user!.name,
         answers: {
-          FUN: funRate[0],
-          HEALTH_OF_CODEBASE: healthOfCodebaseRate[0],
+          FUN: FUN_RATE[0],
+          HEALTH_OF_CODEBASE: HEALTH_OF_CODEBASE_RATE[0],
+          DELIVERING_VALUE: DELIVERING_VALUE_RATE[0],
+          EASY_TO_RELEASE: EASY_TO_RELEASE_RATE[0],
+          LEARNING: LEARNING_RATE[0],
+          MISSION: MISSION_RATE[0],
+          PAWN_OR_PLAYERS: PAWN_OR_PLAYERS_RATE[0],
+          SPEED: SPEED_RATE[0],
+          SUITABLE_PROCESS: SUITABLE_PROCESS_RATE[0],
+          SUPPORT: SUPPORT_RATE[0],
+          TEAMWORK: TEAMWORK_RATE[0],
         },
       })
       .catch((err) => {
@@ -43,7 +91,19 @@ const Survey: NextPage = () => {
       .then((res) => res.data)
   );
 
-  const categoryToState = { FUN: funRate, HEALTH_OF_CODEBASE: healthOfCodebaseRate };
+  const categoryToState = {
+    FUN: FUN_RATE,
+    HEALTH_OF_CODEBASE: HEALTH_OF_CODEBASE_RATE,
+    DELIVERING_VALUE: DELIVERING_VALUE_RATE,
+    EASY_TO_RELEASE: EASY_TO_RELEASE_RATE,
+    LEARNING: LEARNING_RATE,
+    MISSION: MISSION_RATE,
+    PAWN_OR_PLAYERS: PAWN_OR_PLAYERS_RATE,
+    SPEED: SPEED_RATE,
+    SUITABLE_PROCESS: SUITABLE_PROCESS_RATE,
+    SUPPORT: SUPPORT_RATE,
+    TEAMWORK: TEAMWORK_RATE,
+  };
 
   useEffect(() => {
     if (!user) {
