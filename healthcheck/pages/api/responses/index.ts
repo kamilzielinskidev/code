@@ -10,6 +10,15 @@ import * as Surveys from '../../../modules/db/surveysService';
 interface Answers {
   FUN: number;
   HEALTH_OF_CODEBASE: number;
+  DELIVERING_VALUE: number;
+  EASY_TO_RELEASE: number;
+  LEARNING: number;
+  MISSION: number;
+  PAWN_OR_PLAYERS: number;
+  SPEED: number;
+  SUITABLE_PROCESS: number;
+  SUPPORT: number;
+  TEAMWORK: number;
 }
 
 const post = (req: NextApiRequest, res: NextApiResponse) => {
